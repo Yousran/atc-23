@@ -308,6 +308,9 @@
             </div>
         </div>
     </section>
+    <script src="{{ asset('/js/bootstrap.js') }}"></script>
+
+    <script src="{{ asset('/js/sidebar.js') }}"></script>
 </body>
 
 </html>
