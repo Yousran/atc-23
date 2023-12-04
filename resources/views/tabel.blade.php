@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/sidebar.css') }}">
     <link href="{{ asset('/icons/boxicons-2.1.4/css/boxicons.css') }}" rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    @stack('style')
 
 
 </head>
@@ -232,48 +231,15 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
-                        <div class="table-responsive">
-                            <table id="example" class="table" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Religion name</th>
-                                        <th>Add By</th>
-                                        <th>Updated By</th>
-                                        <th>Created At</th>
-                                        <th>Updated At</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                    </div>
+                        <x-table table-name="religions" json-link="religion/json" :columns="['religion_name','add_by']"/>
                 </div>
             </div>
         </div>
     </section>
+    
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/js/sidebar.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-        $(function(){
-
-            $('#example').DataTable({
-                ajax: 'religion/json',
-                processing: true,
-                serverSide: true,
-                pagingType: 'full_numbers',
-                columns:[
-                    {data: 'religion_name', name:'religion_name'},
-                    {data: 'add_by', name:'add_by'},
-                    {data: 'updated_by', name:'updated_by'},
-                    {data: 'created_at', name:'created_at'},
-                    {data: 'updated_at', name:'updated_at'},
-                ]
-            });
-        });
-    </script>
+    @stack('script')
 </body>
 
 </html>
