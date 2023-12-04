@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ReligionController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('tabel');
-});
+Route::get('/', [ReligionController::class, 'index']);
+Route::get('religion/json', [ReligionController::class, 'json']);

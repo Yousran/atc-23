@@ -15,19 +15,13 @@ class ReligionSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('religions')->insert(
-            ['religion_name' => 'islam','add_by' => 'superuser',
-            'updated_by' => 'superuser',],
-            ['religion_name' => 'protestan','add_by' => 'superuser',
-            'updated_by' => 'superuser',],
-            ['religion_name' => 'katolik','add_by' => 'superuser',
-            'updated_by' => 'superuser',],
-            ['religion_name' => 'hindu','add_by' => 'superuser',
-            'updated_by' => 'superuser',],
-            ['religion_name' => 'buddha','add_by' => 'superuser',
-            'updated_by' => 'superuser',],
-            ['religion_name' => 'konghu chu','add_by' => 'superuser',
-            'updated_by' => 'superuser',],
-        );
+        DB::table('religions')->insert([
+            ['religion_name' => 'islam', 'add_by' => 'superuser', 'updated_by' => 'superuser'],
+            ['religion_name' => 'protestan', 'add_by' => 'superuser', 'updated_by' => 'superuser'],
+            ['religion_name' => 'katolik', 'add_by' => 'superuser', 'updated_by' => 'superuser'],
+            ['religion_name' => 'hindu', 'add_by' => 'superuser', 'updated_by' => 'superuser'],
+            ['religion_name' => 'buddha', 'add_by' => 'superuser', 'updated_by' => 'superuser'],
+            ['religion_name' => 'konghu chu', 'add_by' => 'superuser', 'updated_by' => 'superuser'],
+        ]);
     }
 }

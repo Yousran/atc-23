@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/sidebar.css') }}">
     <link href="{{ asset('/icons/boxicons-2.1.4/css/boxicons.css') }}" rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 
 
 </head>
@@ -231,148 +233,47 @@
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                         <div class="table-responsive">
-                            <table class="table" id="myTable">
+                            <table id="example" class="table" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th onclick="sortTable(0,'myTable')"><span class="text"style="user-select: none;">#</span><i class='bx'></i></th>
-                                        <th onclick="sortTable(1,'myTable')"><span class="text"style="user-select: none;">Username</span><i class='bx'></i></th>
-                                        <th onclick="sortTable(2,'myTable')"><span class="text"style="user-select: none;">Role</span><i class='bx'></i></th>
-                                        <th onclick="sortTable(3,'myTable')"><span class="text"style="user-select: none;">Birthday</span><i class='bx'></i></th>
-                                        <th onclick="sortTable(4,'myTable')"><span class="text"style="user-select: none;">addby</span><i class='bx'></i></th>
+                                        <th>Religion name</th>
+                                        <th>Add By</th>
+                                        <th>Updated By</th>
+                                        <th>Created At</th>
+                                        <th>Updated At</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>pengguna</td>
-                                        <td>guest</td>
-                                        <td>02/03/2004</td>
-                                        <td>02/03/2004</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>aengguna</td>
-                                        <td>guest</td>
-                                        <td>02/03/2004</td>
-                                        <td>guest</td>
-                                    </tr>
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="d-flex justify-content-end mb-2">
-                            <nav>
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                        
-                        <script>
-                            function sortTable(n, tableId) {
-                                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-                                table = document.getElementById(tableId);
-                                switching = true;
-                                dir = "asc"; 
-                                while (switching) {
-                                    switching = false;
-                                    rows = table.rows;
-                                    for (i = 1; i < (rows.length - 1); i++) {
-                                    shouldSwitch = false;
-                                    x = rows[i].getElementsByTagName("TD")[n];
-                                    y = rows[i + 1].getElementsByTagName("TD")[n];
-                                    if (dir == "asc") {
-                                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                                        shouldSwitch= true;
-                                        break;
-                                        }
-                                    } else if (dir == "desc") {
-                                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                                        shouldSwitch = true;
-                                        break;
-                                        }
-                                    }
-                                    }
-                                    if (shouldSwitch) {
-                                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                                    switching = true;
-                                    switchcount ++;      
-                                    } else {
-                                    if (switchcount == 0 && dir == "asc") {
-                                        dir = "desc";
-                                        switching = true;
-                                    }
-                                    }
-                                }
-                                var headers = table.getElementsByTagName("TH");
-                                for (i = 0; i < headers.length; i++) {
-                                    headers[i].getElementsByTagName("i")[0].className = 'bx';
-                                }
-                                if (dir == "asc") {
-                                    headers[n].getElementsByTagName("i")[0].className = 'bx bxs-chevron-down align-middle';
-                                } else {
-                                    headers[n].getElementsByTagName("i")[0].className = 'bx bxs-chevron-up align-middle';
-                                }
-                            }
-                        </script>
-                        <script>
-                            // Fungsi untuk menampilkan halaman tertentu dari tabel
-                            function showPage(pageNumber, tableId) {
-                                var table = document.getElementById(tableId);
-                                var rows = table.getElementsByTagName("tr");
-                                var i, row;
-                                
-                                // Sembunyikan semua baris tabel
-                                for (i = 0; i < rows.length; i++) {
-                                    row = rows[i];
-                                    row.style.display = "none";
-                                }
-                                
-                                // Tampilkan baris untuk halaman ini
-                                var startRow = (pageNumber - 1) * rowsPerPage;
-                                var endRow = startRow + rowsPerPage;
-                                endRow = endRow > rows.length ? rows.length : endRow;
-                                for (i = startRow; i < endRow; i++) {
-                                    row = rows[i];
-                                    row.style.display = "";
-                                }
-                            }
-
-                            // Fungsi untuk menangani klik pada link pagination
-                            function onPageClick(event) {
-                                var target = event.target;
-                                
-                                // Dapatkan nomor halaman dari teks link
-                                var pageNumber = parseInt(target.textContent);
-                                
-                                // Tampilkan halaman ini
-                                showPage(pageNumber, 'myTable');
-                            }
-
-                            // Dapatkan semua link pagination
-                            var pageLinks = document.getElementsByClassName("page-link");
-
-                            // Tambahkan event listener untuk setiap link
-                            for (var i = 0; i < pageLinks.length; i++) {
-                                var link = pageLinks[i];
-                                link.addEventListener("click", onPageClick);
-                            }
-
-                        </script>
-                            
-                        
-                        
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
-
     <script src="{{ asset('/js/sidebar.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(function(){
+
+            $('#example').DataTable({
+                ajax: 'religion/json',
+                processing: true,
+                serverSide: true,
+                pagingType: 'full_numbers',
+                columns:[
+                    {data: 'religion_name', name:'religion_name'},
+                    {data: 'add_by', name:'add_by'},
+                    {data: 'updated_by', name:'updated_by'},
+                    {data: 'created_at', name:'created_at'},
+                    {data: 'updated_at', name:'updated_at'},
+                ]
+            });
+        });
+    </script>
 </body>
 
 </html>
