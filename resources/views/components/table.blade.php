@@ -8,7 +8,7 @@
         <thead>
             <tr>
                 @foreach ($columns as $column)
-                    <th>{{ ucwords(str_replace('_', ' ', $column)) }}</th>
+                    <th>{{ ucwords(str_replace('_', ' ', strstr($column, '.') ? substr(strrchr($column, "."), 1) : $column)) }}</th>
                 @endforeach
             </tr>
         </thead>

@@ -9,8 +9,13 @@ use App\Models\Religion;
 class ReligionController extends Controller
 {
     public function index(){
-        return view('tabel');
+        $tableName = 'religions';
+        $jsonLink = 'religion/json';
+        $columns = ['id', 'religion_name', 'add_by', 'created_at', 'updated_at'];
+    
+        return view('tabel', compact('tableName', 'jsonLink', 'columns'));
     }
+    
     public function json(){
         return DataTables::of(Religion::all())->make();
     }

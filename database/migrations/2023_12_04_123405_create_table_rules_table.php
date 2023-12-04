@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('table_rules', function (Blueprint $table) {
             $table->id();
             $table->foreignId('role_id')->constrained()->onDelete('cascade');
-            $table->string('table_name');
+            $table->foreignId('table_list_id')->constrained()->onDelete('cascade');
             $table->integer('view')->default('0');
             $table->integer('add')->default('0');
             $table->integer('edit')->default('0');

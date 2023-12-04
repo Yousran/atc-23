@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class SettingSeeder extends Seeder
 {
@@ -14,6 +15,9 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('settings')->insert([
+            ['user_id' => '1','dark_mode'=>'0', 'add_by' => 'superuser', 'updated_by' => 'superuser'],
+            
+        ]);
     }
 }

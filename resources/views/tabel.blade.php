@@ -231,7 +231,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
-                        <x-table table-name="religions" json-link="religion/json" :columns="['religion_name','add_by']"/>
+                        <x-table :table-name="$tableName" :json-link="$jsonLink" :columns="$columns"/>
                 </div>
             </div>
         </div>
