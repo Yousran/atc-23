@@ -16,11 +16,14 @@ class PaymentStatSeeder extends Seeder
     public function run()
     {
         DB::table('payment_stats')->insert(
-            ['payment_stat_name' => 'paid','add_by' => 'superuser',
+            ['payment_stat_name' => 'paid',
+            'add_by' => 'superuser',
             'updated_by' => 'superuser',],
-            ['payment_stat_name' => 'gradually','add_by' => 'superuser',
+            ['payment_stat_name' => 'gradually'
+            ,'add_by' => 'superuser',
             'updated_by' => 'superuser',],
-            ['payment_stat_name' => 'unpaid','add_by' => 'superuser',
+            ['payment_stat_name' => 'unpaid',
+            'add_by' => 'superuser',
             'updated_by' => 'superuser',],
         );
     }
