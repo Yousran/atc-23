@@ -129,9 +129,7 @@
                             </div>
                         </form>
             </x-col>
-            <div class="col-sm-3">
-                <div class="card">
-                    <div class="card-body">
+            <x-col ukuran='3'>
                         <h5 class="card-title">Sidebar Rules</h5>
                         <ul class="nav nav-tabs pt-3" role="tablist">
                             @foreach ($roles as $role)    
@@ -295,34 +293,7 @@
                             @endforeach
                         </div>
                         
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Button</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        <a href="#" class="btn btn-secondary">Go somewhere</a>
-                        <a href="#" class="btn btn-danger">Go somewhere</a>
-                        <a href="#" class="btn btn-info">Go somewhere</a>
-                        <a href="#" class="btn btn-success">Go somewhere</a>
-                        <a href="#" class="btn btn-warning">Go somewhere</a>
-                        <a href="#" class="btn btn-light">Go somewhere</a>
-                        <a href="#" class="btn btn-dark">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+            </x-col>
         </div>
     </section>
 
@@ -359,9 +330,7 @@
             }
             allCheckbox.checked = allChecked;
         }
-
-
-        </script>
+    </script>
     <script>
         function toggleIcon(element) {
             var checkbox = document.getElementById("check_" + element.id);
@@ -379,8 +348,6 @@
             }
         }
     </script>
-    
-
 </body>
 
 </html>
