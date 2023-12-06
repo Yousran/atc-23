@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('view')->default('0');
             $table->integer('add')->default('0');
             $table->integer('edit')->default('0');
-            $table->integer('import')->default('0');
+            $table->integer('export')->default('0');
             $table->integer('soft_delete')->default('0');
             $table->integer('hard_delete')->default('0');
             $table->string('add_by');

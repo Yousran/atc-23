@@ -24,7 +24,7 @@ class ElementRuleController extends Controller
             'logs', 
             'instruktur', 
             'daftar_kelas_instruktur', 
-            'jadwa_instruktur', 
+            'jadwal_instruktur', 
             'peserta', 
             'kelas_peserta', 
             'jadwal_peserta', 

@@ -9,6 +9,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\PaymentStatController;
 use App\Http\Controllers\ReligionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TableListController;
 use App\Http\Controllers\TableRuleController;
@@ -24,6 +25,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('/profil',function(){return view('profil');});
+
+Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.'], function () {
+    Route::get('/', [RolePermissionController::class, 'index'])->name('index');
+    Route::post('/update',[RolePermissionController::class,'editRolePermission'])->name('update');
+    Route::post('/sidebar',[RolePermissionController::class,'editSidebarPermission'])->name('sidebar');
+});
 
 Route::group(['prefix' => 'religion', 'as' => 'religion.'], function () {
     Route::get('/', [ReligionController::class, 'index'])->name('index');

@@ -27,7 +27,7 @@ return new class extends Migration
             $table->integer('logs')->default('0');
             $table->integer('instruktur')->default('0');
             $table->integer('daftar_kelas_instruktur')->default('0');
-            $table->integer('jadwa_instruktur')->default('0');
+            $table->integer('jadwal_instruktur')->default('0');
             $table->integer('peserta')->default('0');
             $table->integer('kelas_peserta')->default('0');
             $table->integer('jadwal_peserta')->default('0');
