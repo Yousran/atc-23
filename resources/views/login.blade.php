@@ -16,7 +16,7 @@
                             <input type="password" class="form-control" id="exampleInputPassword1" name="password">
                         </div>
                         <div class="col mt-3 d-flex justify-content-end">
-                            <a href="{{ route('register') }}">Belum punya akun?</a>
+                            <a href="{{ route('signup') }}">Belum punya akun?</a>
                         </div>
                         <div class="col mt-3 d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary">Login</button>

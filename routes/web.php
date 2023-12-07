@@ -38,8 +38,9 @@ Route::middleware('UserCheck')->group(function(){
         Route::get('/login',[LoginController::class,'loginIndex'])->name('login');
         Route::post('/login',[LoginController::class,'login'])->name('login.post');
         
-        Route::get('/register',[LoginController::class,'registerIndex'])->name('register');
-        Route::post('/register',[LoginController::class,'register'])->name('register.post');
+        Route::get('/signup',[LoginController::class,'signupIndex'])->name('signup');
+        Route::post('/signup',[LoginController::class,'signup'])->name('signup.post');
+        Route::post('/checkusername',[LoginController::class,'checkusername'])->name('checkusername');
         
         Route::get('/logout',[LoginController::class,'logout'])->name('logout');
     });

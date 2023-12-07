@@ -44,11 +44,22 @@ class LoginController extends Controller
         }
     }
 
-    public function registerIndex(){
-        return view('login');
+    public function signupIndex(){
+        return view('signup');
     }
 
-    public function register(Request $request){
+    public function checkusername(Request $request){
+        $username = $request->get('username');
+        $data = User::where('username', $username)->count();
+        if($data > 0){
+            echo 'false';
+        }else{
+            echo 'true';
+        }
+    }
+    
+
+    public function signup(Request $request){
         
     }
 

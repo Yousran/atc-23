@@ -26,5 +26,15 @@ class UserSeeder extends Seeder
             'updated_by'=>'superuser'
         ]
         );
+        DB::table('users')->insert(
+        [
+            'username'=>'register',
+            'role_id'=>'3',
+            'email'=>'yusran@gmail.com',
+            'password'=>Hash::make('123456789'),
+            'add_by'=>'superuser',
+            'updated_by'=>'superuser'
+        ]
+        );
     }
 }
