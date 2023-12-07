@@ -187,8 +187,20 @@
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Tabel</a></li>
-                
-                <li><a href="#"><i class='bx bx-table'></i>Konfirm Pendaftar</a></li>
+                @foreach (Session::get('table_rules') as $rule)
+                    @php
+                        $tableName = $rule['table_list']['table_name'];
+                        $routeName = str_replace('_', '-', $tableName).".index";
+                    @endphp
+                    @if ($rule['view'] == 1 && ($tableName == 'courses' || $tableName == 'data' || $tableName == 'educations' || $tableName == 'element_rules' || $tableName == 'genders' || $tableName == 'jobs' || $tableName == 'payment_stats' || $tableName == 'religions'||$tableName == 'roles'||$tableName == 'settings'||$tableName == 'table_lists'||$tableName == 'table_rules'||$tableName == 'users'))
+                        <li>
+                            <a href="{{ route($routeName) }}">
+                                <i class='bx bx-table'></i>
+                                {{ ucwords(str_replace('_', ' ', strstr($tableName, '.') ? substr(strrchr($tableName, "."), 1) : $tableName)) }}
+                            </a>
+                        </li>
+                    @endif
+                @endforeach
             </ul>
         </li>
     @endif
@@ -203,21 +215,7 @@
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Tabel</a></li>
-                @foreach (Session::get('table_rules') as $rule)
-                @php
-                    $tableName = $rule['table_list']['table_name'];
-                    $routeName = str_replace('_', '-', $tableName);
-                @endphp
-                @if ($rule['view'] == 1 && ($tableName == 'courses' || $tableName == 'data' || $tableName == 'education' || $tableName == 'element_rules' || $tableName == 'genders' || $tableName == 'jobs' || $tableName == 'payment_stats' || $tableName == 'religions'||$tableName == 'roles'||$tableName == 'settings'||$tableName == 'table_lists'||$tableName == 'table_rules'||$tableName == 'users'))
-                    <li>
-                        <a href="{{ route($routeName) }}">
-                            <i class='bx bx-pie-chart-alt-2'></i>
-                            {{ ucwords(str_replace('_', ' ', strstr($tableName, '.') ? substr(strrchr($tableName, "."), 1) : $tableName)) }}
-                        </a>
-                    </li>
-                @endif
-            @endforeach
-
+                <li><a href="#"><i class='bx bx-pie-chart-alt-2'></i>Konfirm Pendaftar</a></li>
             </ul>
         </li>
     @endif

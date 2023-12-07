@@ -16,8 +16,6 @@ class UserController extends Controller
             'role.role_name', 
             'username', 
             'email', 
-            'password', 
-            'photo', 
             'add_by', 
             'updated_by', 
             'created_at', 

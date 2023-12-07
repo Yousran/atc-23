@@ -17,7 +17,7 @@ class TableRuleController extends Controller
             'view', 
             'add', 
             'edit', 
-            'import', 
+            'export', 
             'soft_delete', 
             'hard_delete', 
             'add_by', 
