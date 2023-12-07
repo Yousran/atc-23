@@ -9,8 +9,8 @@ use Yajra\DataTables\DataTables;
 class SettingController extends Controller
 {
     public function index(){
-        $tableName = 'setting';
-        $jsonLink = 'setting/json';
+        $tableName = 'settings';
+        $jsonLink = 'settings/json';
         $columns = [
             'id', 
             'user.username', 

@@ -9,8 +9,8 @@ use Yajra\DataTables\DataTables;
 class TableRuleController extends Controller
 {
     public function index(){
-        $tableName = 'table-rule';
-        $jsonLink = 'table-rule/json';
+        $tableName = 'table-rules';
+        $jsonLink = 'table-rules/json';
         $columns = [
             'role.role_name', 
             'tableList.table_name', 

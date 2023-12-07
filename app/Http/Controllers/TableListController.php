@@ -9,8 +9,8 @@ use Yajra\DataTables\DataTables;
 class TableListController extends Controller
 {
     public function index(){
-        $tableName = 'table-list';
-        $jsonLink = 'table-list/json';
+        $tableName = 'table-lists';
+        $jsonLink = 'table-lists/json';
         $columns = ['id', 'table_name', 'add_by', 'updated_by', 'created_at', 'updated_at'];
     
         return view('tabel', compact('tableName', 'jsonLink', 'columns'));

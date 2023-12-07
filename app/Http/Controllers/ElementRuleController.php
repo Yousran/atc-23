@@ -9,8 +9,8 @@ use Yajra\DataTables\DataTables;
 class ElementRuleController extends Controller
 {
     public function index(){
-        $tableName = 'element-rule';
-        $jsonLink = 'element-rule/json';
+        $tableName = 'element-rules';
+        $jsonLink = 'element-rules/json';
         $columns = [
             'role.role_name', 
             'dashboard', 

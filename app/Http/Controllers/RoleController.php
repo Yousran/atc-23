@@ -9,8 +9,8 @@ use Yajra\DataTables\DataTables;
 class RoleController extends Controller
 {
     public function index(){
-        $tableName = 'role';
-        $jsonLink = 'role/json';
+        $tableName = 'roles';
+        $jsonLink = 'roles/json';
         $columns = ['id', 'role_name','desc','photo', 'add_by', 'created_at', 'updated_at'];
     
         return view('tabel', compact('tableName', 'jsonLink', 'columns'));

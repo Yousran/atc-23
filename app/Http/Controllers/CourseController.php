@@ -9,8 +9,8 @@ use Yajra\DataTables\DataTables;
 class CourseController extends Controller
 {
     public function index(){
-        $tableName = 'course';
-        $jsonLink = 'course/json';
+        $tableName = 'courses';
+        $jsonLink = 'courses/json';
         $columns = [
             'id', 
             'course_name', 

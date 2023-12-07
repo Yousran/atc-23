@@ -9,8 +9,8 @@ use Yajra\DataTables\DataTables;
 class PaymentStatController extends Controller
 {
     public function index(){
-        $tableName = 'payment-stat';
-        $jsonLink = 'payment-stat/json';
+        $tableName = 'payment-stats';
+        $jsonLink = 'payment-stats/json';
         $columns = ['id', 'payment_stat_name', 'add_by', 'created_at', 'updated_at'];
     
         return view('tabel', compact('tableName', 'jsonLink', 'columns'));

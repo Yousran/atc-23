@@ -50,57 +50,57 @@ Route::middleware('UserCheck')->group(function(){
         Route::post('/sidebar',[RolePermissionController::class,'editSidebarPermission'])->name('sidebar');
     });
 
-    Route::group(['prefix' => 'religion', 'as' => 'religion.'], function () {
+    Route::group(['prefix' => 'religions', 'as' => 'religions.'], function () {
         Route::get('/', [ReligionController::class, 'index'])->name('index');
         Route::get('json', [ReligionController::class, 'json'])->name('json');
     });
 
-    Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+    Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
         Route::get('json', [UserController::class, 'json'])->name('json');
     });
 
-    Route::group(['prefix' => 'gender', 'as' => 'gender.'], function () {
+    Route::group(['prefix' => 'genders', 'as' => 'genders.'], function () {
         Route::get('/', [GenderController::class, 'index'])->name('index');
         Route::get('json', [GenderController::class, 'json'])->name('json');
     });
 
-    Route::group(['prefix' => 'education', 'as' => 'education.'], function () {
+    Route::group(['prefix' => 'educations', 'as' => 'educations.'], function () {
         Route::get('/', [EducationController::class, 'index'])->name('index');
         Route::get('json', [EducationController::class, 'json'])->name('json');
     });
 
-    Route::group(['prefix' => 'job', 'as' => 'job.'], function () {
+    Route::group(['prefix' => 'jobs', 'as' => 'jobs.'], function () {
         Route::get('/', [JobController::class, 'index'])->name('index');
         Route::get('json', [JobController::class, 'json'])->name('json');
     });
 
-    Route::group(['prefix' => 'payment-stat', 'as' => 'payment-stat.'], function () {
+    Route::group(['prefix' => 'payment-stats', 'as' => 'payment-stats.'], function () {
         Route::get('/', [PaymentStatController::class, 'index'])->name('index');
         Route::get('json', [PaymentStatController::class, 'json'])->name('json');
     });
 
-    Route::group(['prefix' => 'table-list', 'as' => 'table-list.'], function () {
+    Route::group(['prefix' => 'table-lists', 'as' => 'table-lists.'], function () {
         Route::get('/', [TableListController::class, 'index'])->name('index');
         Route::get('json', [TableListController::class, 'json'])->name('json');
     });
 
-    Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
+    Route::group(['prefix' => 'roles', 'as' => 'roles.'], function () {
         Route::get('/', [RoleController::class, 'index'])->name('index');
         Route::get('json', [RoleController::class, 'json'])->name('json');
     });
 
-    Route::group(['prefix' => 'element-rule', 'as' => 'element-rule.'], function () {
+    Route::group(['prefix' => 'element-rules', 'as' => 'element-rules.'], function () {
         Route::get('/', [ElementRuleController::class, 'index'])->name('index');
         Route::get('json', [ElementRuleController::class, 'json'])->name('json');
     });
 
-    Route::group(['prefix' => 'table-rule', 'as' => 'table-rule.'], function () {
+    Route::group(['prefix' => 'table-rules', 'as' => 'table-rules.'], function () {
         Route::get('/', [TableRuleController::class, 'index'])->name('index');
         Route::get('json', [TableRuleController::class, 'json'])->name('json');
     });
 
-    Route::group(['prefix' => 'course', 'as' => 'course.'], function () {
+    Route::group(['prefix' => 'courses', 'as' => 'courses.'], function () {
         Route::get('/', [CourseController::class, 'index'])->name('index');
         Route::get('json', [CourseController::class, 'json'])->name('json');
     });
@@ -110,7 +110,7 @@ Route::middleware('UserCheck')->group(function(){
         Route::get('json', [DataController::class, 'json'])->name('json');
     });
 
-    Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
+    Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
         Route::get('/', [SettingController::class, 'index'])->name('index');
         Route::get('json', [SettingController::class, 'json'])->name('json');
     });

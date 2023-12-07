@@ -9,8 +9,8 @@ use App\Models\Gender;
 class GenderController extends Controller
 {
     public function index(){
-        $tableName = 'gender';
-        $jsonLink = 'gender/json';
+        $tableName = 'genders';
+        $jsonLink = 'genders/json';
         $columns = ['id', 'gender_name', 'add_by', 'created_at', 'updated_at'];
     
         return view('tabel', compact('tableName', 'jsonLink', 'columns'));
