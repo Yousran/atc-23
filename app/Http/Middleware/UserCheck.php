@@ -26,7 +26,7 @@ class UserCheck
         }
             $uri = $request->route()->uri();
         if ($request->session()->exists('username')) {
-            if ($uri == 'login' || $uri == 'register') {
+            if ($uri == 'login' || $uri == 'signup') {
                 return redirect('/'); // Redirect to home page or dashboard
             }
         }

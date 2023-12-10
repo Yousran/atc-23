@@ -19,13 +19,13 @@ class LoginController extends Controller
             'username' => 'required',
             'password' => 'required',
         ]);
-
+    
         // cek apakah user ada di database
         $user = User::with(['role', 'role.table_rules.tableList', 'role.element_rules'])
              ->where('username', $request->username)
+             ->orWhere('email', $request->username)
              ->first();
-
-
+    
         // cek password
         if ($user && Hash::check($request->password, $user->password)) {
             // buat session
@@ -38,11 +38,10 @@ class LoginController extends Controller
             return redirect('/');
         } else {
             // jika login gagal, kembali ke halaman login dengan pesan error
-            return back()->withErrors([
-                'username' => 'Username atau password salah.',
-            ]);
+            return redirect()->back()->with('wrong','Username atau Password salah');
         }
     }
+    
 
     public function signupIndex(){
         return view('signup');
@@ -57,10 +56,27 @@ class LoginController extends Controller
             echo 'true';
         }
     }
+    public function checkemail(Request $request){
+        $email = $request->get('email');
+        $data = User::where('email', $email)->count();
+        if($data > 0){
+            echo 'false';
+        }else{
+            echo 'true';
+        }
+    }
     
 
     public function signup(Request $request){
-        
+        $user = new User;
+        $user->username = $request->username;
+        $user->role_id = '3';
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->add_by = session('role_name');
+        $user->updated_by = session('role_name');
+        $user->save();
+        return redirect('login')->with('success', 'User created successfully!');
     }
 
     public function logout(){

@@ -41,6 +41,7 @@ Route::middleware('UserCheck')->group(function(){
         Route::get('/signup',[LoginController::class,'signupIndex'])->name('signup');
         Route::post('/signup',[LoginController::class,'signup'])->name('signup.post');
         Route::post('/checkusername',[LoginController::class,'checkusername'])->name('checkusername');
+        Route::post('/checkemail',[LoginController::class,'checkemail'])->name('checkemail');
         
         Route::get('/logout',[LoginController::class,'logout'])->name('logout');
     });

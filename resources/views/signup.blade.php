@@ -58,11 +58,9 @@
                 || value.length >= 6
                 && /\d/.test(value)
                 && /[a-z]/i.test(value);
-            }, 'your password sucks');
+            });
 
            $("#signup-form").validate({
-            // validClass: "is-valid",
-            // errorClass: "is-invalid",
             rules: {
                 username:{
                     required:true,
@@ -82,15 +80,50 @@
                 email:{
                     required:true,
                     email:true,
+                    remote: {
+                        url: "{{ route('checkemail') }}",
+                        type: "post",
+                        data: {
+                        _token: '{{ csrf_token() }}',
+                        username: function() {
+                            return $( "#email" ).val();
+                            },
+                        },
+                    },
                 },
                 password:{
                     required:true,
+                    minlength: 3,
                     strongPassword:true
                 },
                 konfirm_password:{
                     required:true,
                     equalTo:'#password',
                     strongPassword:true
+                },
+            },
+            messages:{
+                username:{
+                    required : 'Mohon berikan username',
+                    minlength: 'Minimal 3 kata',
+                    maxlength: 'Maksimal 12 kata',
+                    remote: 'Username telah digunakan',
+                },
+                email:{
+                    required: 'Mohon berikan email',
+                    email: 'Berikan format email yang benar',
+                    remote: 'Email telah digunakan',
+                },
+                password:{
+                    required: 'Mohon berikan password',
+                    minlength: 'Password harus memiliki minimal 3 kata',
+                    strongPassword: 'password harus berisi angka dan huruf',
+                },
+                konfirm_password:{
+                    required: 'Mohon tulis ulang password',
+                    minlength: 'Password harus memiliki minimal 3 kata',
+                    equalTo: 'Password harus sesuai',
+                    strongPassword: 'password harus berisi angka dan huruf',
                 },
             },
            });

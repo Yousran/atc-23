@@ -1,4 +1,7 @@
 @extends('layouts.form')
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('/vendor/animate.min.css') }}">
+@endsection
 @section('contents')
     <div class="row bg-tertiary justify-content-center align-content-center h-100">
         <div class="col-sm-4">
@@ -9,11 +12,15 @@
                         @csrf
                         <div class="col">
                             <label for="validationCustom01" class="form-label">Username/Email</label>
-                            <input type="text" class="form-control" id="validationCustom01" name="username" value="Username" required>
+                            <input type="text" class="form-control @if (Session::has('wrong')) {{ 'is-invalid' }} @endif" id="validationCustom01" name="username" placeholder="Username/email" required>
                         </div>
                         <div class="col">
                             <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                            <input type="password" class="form-control @if (Session::has('wrong')) {{ 'is-invalid' }} @endif" id="exampleInputPassword1" name="password">
+                            @if (Session::has('wrong'))
+                            <div class="invalid-feedback animated fadeInUp" style="display: block;">{{
+                                Session::get('wrong') }}</div>
+                            @endif
                         </div>
                         <div class="col mt-3 d-flex justify-content-end">
                             <a href="{{ route('signup') }}">Belum punya akun?</a>
@@ -28,3 +35,14 @@
         </div>
     </div>
 @endsection
+@push('script')
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('input').on('click', function() {
+            $('input').removeClass('is-invalid');
+            $('.invalid-feedback').hide();
+        });
+    });
+    </script>
+@endpush
