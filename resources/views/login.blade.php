@@ -22,9 +22,17 @@
                                 Session::get('wrong') }}</div>
                             @endif
                         </div>
-                        <div class="col mt-3 d-flex justify-content-end">
-                            <a href="{{ route('signup') }}">Belum punya akun?</a>
-                        </div>
+                        @if (Session::has('success'))
+                            <div class="alert alert-success alert-dismissible mt-3" role="alert">
+                                <div>Sign Up Sukses, Silahkan Login</div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @else
+                            <div class="col mt-3 d-flex justify-content-end">
+                                <a href="{{ route('signup') }}">Belum punya akun?</a>
+                            </div>
+                        @endif
+
                         <div class="col mt-3 d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary">Login</button>
                         </div>
