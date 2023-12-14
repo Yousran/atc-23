@@ -1,6 +1,7 @@
 @extends('layouts.form')
 @section('styles')
     <link rel="stylesheet" href="{{ asset('/vendor/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendor/ijaboCropTool.min.css') }}">
 @endsection
 @section('contents')
     <div class="row bg-tertiary justify-content-center align-content-center h-100">
@@ -26,6 +27,11 @@
                             <label class="form-label">Konfirm Password</label>
                             <input type="password" class="form-control" name="konfirm_password" placeholder="Konfirm Password">
                         </div>
+                        <input type="hidden" name="photoname" id="photoname">
+                        <div class="col">
+                            <label class="form-label">Foto Profil</label>
+                            <input type="file" class="form-control" name="_userAvatarFile" id="_userAvatarFile">
+                        </div>
                         <div class="col mt-3 d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary" id='submit-button'>Sign Up</button>
                         </div>
@@ -38,6 +44,7 @@
 @push('script')
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="{{ asset('/vendor/ijaboCropTool.min.js') }}"></script>
     <script>
         $(function() {
             $.validator.setDefaults({
@@ -128,5 +135,21 @@
             },
            });
         });
+    </script>
+    <script>
+        var successupload = "<div class='alert alert-success alert-dismissible fade show mt-3' role='alert'>Foto telah terupload<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
+        var errorupload = "<div class='alert alert-danger alert-dismissible fade show' role='alert'>Format file salah<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
+        $('#_userAvatarFile').ijaboCropTool({
+        processUrl:"{{route('uploadimage')}}",
+        withCSRF:['_token','{{ csrf_token() }}'],
+        allowedExtensions: ['jpg', 'jpeg','png'],
+        onSuccess:function(message,element,status){
+            $('#photoname').val(message);
+            $('#_userAvatarFile').parent().after(successupload);
+        },
+        onError:function(message,element,status){
+            $('#_userAvatarFile').parent().after(errorupload);
+        }
+        }); 
     </script>
 @endpush

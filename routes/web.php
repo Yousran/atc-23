@@ -14,6 +14,7 @@ use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TableListController;
 use App\Http\Controllers\TableRuleController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -28,8 +29,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+route::group([],function(){
+    Route::post('/uploadimage',[UploadController::class,'imageUpload'])->name('uploadimage');
+});
+
+
 Route::middleware('UserCheck')->group(function(){ 
-    Route::get('/profil',function(){return view('profil');})->name('profil');
+
     Route::get('/', function() {
         return dd(session()->all());
     });
@@ -43,6 +49,8 @@ Route::middleware('UserCheck')->group(function(){
         Route::post('/checkusername',[LoginController::class,'checkusername'])->name('checkusername');
         Route::post('/checkemail',[LoginController::class,'checkemail'])->name('checkemail');
         
+        Route::get('/profil/{username?}',[LoginController::class,'profil'])->name('profil');
+        Route::post('/updatedata',[LoginController::class,'updatedata'])->name('updatedata');
         Route::get('/logout',[LoginController::class,'logout'])->name('logout');
     });
 

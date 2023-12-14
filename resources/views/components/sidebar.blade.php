@@ -243,18 +243,24 @@
 
         <li class="menu-head">
             <div class="profile-details">
-                <a href="{{ Session::has('username') ? route('profil') : route('login') }}">
-                    @if (Session::has('username'))   
+                <a href="{{ Session::has('username') ? route('profil', Session::get('username')) : route('login') }}">
+                    @if (Session::has('username'))
+                    @if (Session::get('user_photo')==null)
                         <div class="profile-content">
-                            <img src="{{ asset('/images/'.Session::get('photo','guest-photo.png')) }}" alt="profileImg">
+                            <img src="{{ asset('/images/guest-photo.png') }}" alt="profileImg">
                         </div>
+                    @else
+                        <div class="profile-content">
+                            <img src="{{ asset('/images/'.Session::get('user_photo','guest-photo.png')) }}" alt="profileImg">
+                        </div>
+                    @endif   
                         <div class="name-job">
                             <div class="profile_name">{{ Session::get('username') }}</div>
                             <div class="job">{{ Session::get('role_name') }}</div>
                         </div>
                     @else
                         <div class="profile-content">
-                            <img src="{{ asset('/images/'.Session::get('photo','guest-photo.png')) }}" alt="profileImg">
+                            <img src="{{ asset('/images/guest-photo.png') }}" alt="profileImg">
                         </div>
                         <div class="name-job">
                             <div class="profile_name">Guest</div>

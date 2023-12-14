@@ -13,5 +13,9 @@ class User extends Model
     {
         return $this->belongsTo(Role::class);
     }
+    public function data()
+    {
+        return $this->hasOne(Data::class);
+    }
 
 }

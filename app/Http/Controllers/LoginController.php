@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Data;
+use App\Models\Education;
+use App\Models\Gender;
+use App\Models\Job;
+use App\Models\Religion;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -56,6 +61,7 @@ class LoginController extends Controller
             echo 'true';
         }
     }
+
     public function checkemail(Request $request){
         $email = $request->get('email');
         $data = User::where('email', $email)->count();
@@ -66,12 +72,14 @@ class LoginController extends Controller
         }
     }
     
-
     public function signup(Request $request){
         $user = new User;
         $user->username = $request->username;
         $user->role_id = '3';
         $user->email = $request->email;
+        if ($request->input('photoname')) {
+            $user->photo = $request->input('photoname');
+        }
         $user->password = Hash::make($request->password);
         $user->add_by = session('role_name');
         $user->updated_by = session('role_name');
@@ -80,7 +88,81 @@ class LoginController extends Controller
     }
 
     public function logout(){
-        session()->forget(['user','username', 'role_name', 'table_rules', 'element_rules']);
+        session()->forget(['user','username', 'role_name', 'table_rules', 'element_rules','user_photo']);
         return redirect('/');;
     }
+
+    public function profil(Request $request, $username = null){
+        $session_username = $request->session()->get('username');
+        $username = $username ?? $session_username;
+        if ($username) {
+            $user = User::with(['role', 'data'])
+            ->where('username', $username)
+            ->first();
+            $genders = Gender::all();
+            $jobs = Job::all();
+            $religions = Religion::all();
+            $educations = Education::all();
+            return view('profil', ['user' => $user, 'genders' => $genders, 'jobs' => $jobs, 'religions' => $religions, 'educations' => $educations, 'session_username' => $session_username]);
+        }
+    }
+    public function updatedata(Request $request)
+    {
+        // Validasi data request jika diperlukan
+        $request->validate([
+            'nik' => 'required|integer',
+            'surename' => 'required|string',
+            'address' => 'required|string',
+            'birthday' => 'required|date',
+            'gender_id' => 'required|integer',
+            'education_id' => 'required|integer',
+            'job_id' => 'required|integer',
+            'religion_id' => 'required|integer',
+        ]);
+    
+        // Temukan user berdasarkan id
+        $user = User::find($request->user_id);
+    
+        // Jika user tidak ditemukan, kembalikan error
+        if (!$user) {
+            return redirect()->back()->withErrors(['error' => 'User not found.']);
+        }
+    
+        // Jika data pengguna tidak ada, buat data baru
+        if (!$user->data) {
+            $user->data()->create([
+                'user_id' => $request->user_id,
+                'nik' => $request->nik,
+                'surename' => $request->surename,
+                'address' => $request->address,
+                'birthday' => $request->birthday,
+                'gender_id' => $request->gender_id,
+                'education_id' => $request->education_id,
+                'job_id' => $request->job_id,
+                'religion_id' => $request->religion_id,
+                'add_by' => $request->session()->get('username'),
+                'updated_by' => $request->session()->get('username'),
+                // 'add_by' => $request->user()->username, // asumsi Anda menggunakan Laravel's built-in authentication
+                // 'updated_by' => $request->user()->username, // asumsi Anda menggunakan Laravel's built-in authentication
+            ]);
+        } else {
+            // Jika data pengguna ada, update data
+            $user->data->update([
+                'nik' => $request->nik,
+                'surename' => $request->surename,
+                'address' => $request->address,
+                'birthday' => $request->birthday,
+                'gender_id' => $request->gender_id,
+                'education_id' => $request->education_id,
+                'job_id' => $request->job_id,
+                'religion_id' => $request->religion_id,
+                'updated_by' => $request->session()->get('username'),
+                // 'updated_by' => $request->user()->username, // asumsi Anda menggunakan Laravel's built-in authentication
+            ]);
+        }
+    
+        // Redirect kembali ke halaman sebelumnya dengan pesan sukses
+        return redirect()->back()->with('success', 'Data updated successfully.');
+    }
+       
 }
