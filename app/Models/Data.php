@@ -12,6 +12,7 @@ class Data extends Model
         'nik', 
         'surename', 
         'address', 
+        'bio', 
         'birthday', 
         'gender_id', 
         'education_id', 

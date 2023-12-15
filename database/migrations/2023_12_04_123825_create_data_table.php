@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('nik')->nullable();
             $table->string('surename')->nullable();
             $table->text('address')->nullable();
+            $table->text('bio')->nullable();
             $table->date('birthday')->nullable();
             $table->foreignId('gender_id')->constrained();
             $table->foreignId('education_id')->constrained();

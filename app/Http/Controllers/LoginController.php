@@ -71,6 +71,16 @@ class LoginController extends Controller
             echo 'true';
         }
     }
+
+    public function profilpictupload(Request $request){
+        if ($request->photo) {
+            $user = User::find($request->user_id);
+            $user->update([
+                'photo' => $request->photo,
+            ]);
+            return redirect()->back();
+        }
+    }
     
     public function signup(Request $request){
         $user = new User;
@@ -127,7 +137,6 @@ class LoginController extends Controller
         if (!$user) {
             return redirect()->back()->withErrors(['error' => 'User not found.']);
         }
-    
         // Jika data pengguna tidak ada, buat data baru
         if (!$user->data) {
             $user->data()->create([

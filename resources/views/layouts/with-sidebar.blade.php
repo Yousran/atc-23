@@ -26,7 +26,6 @@
             @yield('columns')
         </div>
     </section>
-    
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
     @stack('script')
 </body>

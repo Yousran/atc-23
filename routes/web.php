@@ -49,6 +49,8 @@ Route::middleware('UserCheck')->group(function(){
         Route::post('/checkusername',[LoginController::class,'checkusername'])->name('checkusername');
         Route::post('/checkemail',[LoginController::class,'checkemail'])->name('checkemail');
         
+        Route::post('/profilpictupload',[LoginController::class,'profilpictupload'])->name('profilpictupload');
+        
         Route::get('/profil/{username?}',[LoginController::class,'profil'])->name('profil');
         Route::post('/updatedata',[LoginController::class,'updatedata'])->name('updatedata');
         Route::get('/logout',[LoginController::class,'logout'])->name('logout');
