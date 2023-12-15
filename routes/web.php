@@ -60,68 +60,58 @@ Route::middleware('UserCheck')->group(function(){
         Route::get('/', [RolePermissionController::class, 'index'])->name('index');
         Route::post('/update',[RolePermissionController::class,'editRolePermission'])->name('update');
         Route::post('/sidebar',[RolePermissionController::class,'editSidebarPermission'])->name('sidebar');
+        Route::post('/addrole',[RolePermissionController::class,'addNewRole'])->name('addrole');
+        Route::post('/deleterole',[RolePermissionController::class,'deleteRole'])->name('deleterole');
     });
 
     Route::group(['prefix' => 'religions', 'as' => 'religions.'], function () {
         Route::get('/', [ReligionController::class, 'index'])->name('index');
         Route::get('json', [ReligionController::class, 'json'])->name('json');
     });
-
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
         Route::get('json', [UserController::class, 'json'])->name('json');
     });
-
     Route::group(['prefix' => 'genders', 'as' => 'genders.'], function () {
         Route::get('/', [GenderController::class, 'index'])->name('index');
         Route::get('json', [GenderController::class, 'json'])->name('json');
     });
-
     Route::group(['prefix' => 'educations', 'as' => 'educations.'], function () {
         Route::get('/', [EducationController::class, 'index'])->name('index');
         Route::get('json', [EducationController::class, 'json'])->name('json');
     });
-
     Route::group(['prefix' => 'jobs', 'as' => 'jobs.'], function () {
         Route::get('/', [JobController::class, 'index'])->name('index');
         Route::get('json', [JobController::class, 'json'])->name('json');
     });
-
     Route::group(['prefix' => 'payment-stats', 'as' => 'payment-stats.'], function () {
         Route::get('/', [PaymentStatController::class, 'index'])->name('index');
         Route::get('json', [PaymentStatController::class, 'json'])->name('json');
     });
-
     Route::group(['prefix' => 'table-lists', 'as' => 'table-lists.'], function () {
         Route::get('/', [TableListController::class, 'index'])->name('index');
         Route::get('json', [TableListController::class, 'json'])->name('json');
     });
-
     Route::group(['prefix' => 'roles', 'as' => 'roles.'], function () {
         Route::get('/', [RoleController::class, 'index'])->name('index');
         Route::get('json', [RoleController::class, 'json'])->name('json');
     });
-
     Route::group(['prefix' => 'element-rules', 'as' => 'element-rules.'], function () {
         Route::get('/', [ElementRuleController::class, 'index'])->name('index');
         Route::get('json', [ElementRuleController::class, 'json'])->name('json');
     });
-
     Route::group(['prefix' => 'table-rules', 'as' => 'table-rules.'], function () {
         Route::get('/', [TableRuleController::class, 'index'])->name('index');
         Route::get('json', [TableRuleController::class, 'json'])->name('json');
     });
-
     Route::group(['prefix' => 'courses', 'as' => 'courses.'], function () {
         Route::get('/', [CourseController::class, 'index'])->name('index');
         Route::get('json', [CourseController::class, 'json'])->name('json');
     });
-
     Route::group(['prefix' => 'data', 'as' => 'data.'], function () {
         Route::get('/', [DataController::class, 'index'])->name('index');
         Route::get('json', [DataController::class, 'json'])->name('json');
     });
-
     Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
         Route::get('/', [SettingController::class, 'index'])->name('index');
         Route::get('json', [SettingController::class, 'json'])->name('json');

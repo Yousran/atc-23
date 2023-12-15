@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ElementRule;
 use App\Models\Role;
+use App\Models\TableList;
 use App\Models\TableRule;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,58 @@ class RolePermissionController extends Controller
         $roles = Role::with(['table_rules','element_rules'])->get();
         return view('role-permission',compact(['roles']));
     }
+
+    public function addNewRole(Request $request){
+        $role = new Role;
+        $role->role_name = $request->role_name;
+        $role->desc = $request->desc;
+        $role->add_by = $request->session()->get('username');
+        $role->updated_by = $request->session()->get('username');
+        $role->save();
+        
+        $element_rule = new ElementRule;
+        $element_rule->role_id = $role->id;
+        $element_rule->add_by = $request->session()->get('username');
+        $element_rule->updated_by = $request->session()->get('username');
+        $element_rule->save();
+
+
+        $table_lists = TableList::all();
+        foreach ($table_lists as $table_list) {
+            $table_rule = new TableRule;
+            $table_rule->role_id = $role->id;
+            $table_rule->table_list_id = $table_list->id;
+            $table_rule->add_by = $request->session()->get('username');
+            $table_rule->updated_by = $request->session()->get('username');
+            $table_rule->save();
+        }
+        return redirect()->back();
+    }
+
+    public function deleteRole(Request $request){
+        if ($request->role_id_delete >= 1 && $request->role_id_delete <= 3) {
+            // Jika ya, kembali ke halaman sebelumnya dengan pesan error
+            return redirect()->back()->with('error', 'Role dengan id 1 sampai 3 tidak dapat dihapus');
+        }
+        // Temukan role berdasarkan id
+        $role = Role::find($request->role_id_delete);
+    
+        // Cek apakah role ditemukan
+        if ($role) {
+            // Hapus semua aturan elemen dan aturan tabel yang terkait dengan role ini
+            ElementRule::where('role_id', $role->id)->delete();
+            TableRule::where('role_id', $role->id)->delete();
+    
+            // Hapus role
+            $role->delete();
+    
+            // Kembali ke halaman sebelumnya dengan pesan sukses
+            return redirect()->back()->with('success', 'Role berhasil dihapus');
+        } else {
+            // Kembali ke halaman sebelumnya dengan pesan error
+            return redirect()->back()->with('error', 'Role tidak ditemukan');
+        }
+    }    
 
     public function editRolePermission(Request $request){
         // Get all table rule ids that should be included in the form

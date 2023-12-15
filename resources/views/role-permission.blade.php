@@ -28,21 +28,22 @@
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Role</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="" method="post">
+                                <form action="{{ route('role-permission.addrole') }}" method="post">
                                     <div class="modal-body">
                                         <div class="mb-3">
+                                            @csrf
                                             <label class="form-label">Role Name</label>
-                                            <input type="text" class="form-control"  placeholder="Peserta">
+                                            <input type="text" class="form-control" name="role_name" placeholder="Peserta">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Description</label>
-                                            <textarea type="text" class="form-control"  placeholder="Description"></textarea>
+                                            <textarea type="text" class="form-control" name="desc" placeholder="Description"></textarea>
                                         </div>
                                         {{-- Upload FOto Role --}}
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
                                     </div>
                                 </form>
                                 </div>
@@ -56,13 +57,15 @@
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Role</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="" method="post">
+                                <form action="{{ route('role-permission.deleterole') }}" method="post">
                                     <div class="modal-body">
+                                        @csrf
+                                        <input type="hidden" name="role_id_delete" value="">
                                         <h3>Apakah Anda Yakin Ingin Menghapus?</h3>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-danger">Hapus</button>
+                                        <button type="submit" class="btn btn-danger">Hapus</button>
                                     </div>
                                 </form>
                                 </div>
@@ -70,7 +73,7 @@
                         </div>
                         <div class="d-flex justify-content-end">
                             <div class="btn-group">
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapus_role">Hapus Role</button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapus_role" id='hapus_role_button'>Hapus Role</button>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah_role">Add New Role</button>
                             </div>
                         </div>
@@ -81,12 +84,13 @@
                                     <li class="nav-item">
                                         <a class="nav-link {{ $loop->first ? 'active' : '' }}" data-bs-toggle="tab" data-bs-target="#panel{{ $role->id }}">{{ $role->role_name }}</a>
                                     </li>
-                                @endforeach
-                            </ul>
-                            <div class="tab-content">
-                                @foreach ($roles as $role)
-                                <div class="tab-pane fade show {{ $loop->first ? 'active' : '' }}" id="panel{{ $role->id }}" role="tabpanel">
-                                    <div class="table-responsive-sm">
+                                    @endforeach
+                                </ul>
+                                <div class="tab-content">
+                                    @foreach ($roles as $role)
+                                    <div class="tab-pane role fade show {{ $loop->first ? 'active' : '' }}" id="panel{{ $role->id }}" role="tabpanel">
+                                    <input type="hidden" value="{{ $role->id }}">
+                                        <div class="table-responsive-sm">
                                         <table class="table">
                                             <thead>
                                                 <tr>
@@ -347,6 +351,20 @@
                 icon.className = 'bx bx-hide';
             }
         }
+    </script>
+    <script>
+        document.getElementById("hapus_role_button").addEventListener("click", function(){
+            var role_pane_active = document.getElementsByClassName("tab-pane role fade show active")[0];
+            var id_role = role_pane_active.firstElementChild.value;
+
+            // Dapatkan elemen input dengan name="role_id_delete"
+            var inputElement = document.getElementsByName("role_id_delete")[0];
+
+            // Atur nilai dari elemen input tersebut
+            inputElement.value = id_role;
+            console.log(role_pane_active);
+            console.log(id_role);
+        });
     </script>
 </body>
 
