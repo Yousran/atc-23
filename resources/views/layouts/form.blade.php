@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme='light'>
+<html lang="en" data-bs-theme='{{ Session::get('setting.dark_mode') == 1 ? 'dark' : 'light' }}'>
 
 <head>
     <meta charset="UTF-8">
@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.css') }}">
     <link href="{{ asset('/icons/boxicons-2.1.4/css/boxicons.css') }}" rel='stylesheet'>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     @yield('styles')
 
 </head>

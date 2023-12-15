@@ -49,6 +49,7 @@ class SettingController extends Controller
             LoginController::reloadUser($request->session()->get('username'));
             return response()->json(['success' => true]);
         } else {
+            Session::put('setting', ['dark_mode'=>$request->dark_mode]);
             return response()->json(['error' => 'Setting not found'], 404);
         }
     }
