@@ -38,7 +38,7 @@ Route::middleware('UserCheck')->group(function(){
 
     Route::get('/', function() {
         return dd(session()->all());
-    });
+    })->name('dashboard');
 
     Route::group([], function () {
         Route::get('/login',[LoginController::class,'loginIndex'])->name('login');

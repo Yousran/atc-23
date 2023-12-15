@@ -10,7 +10,7 @@
     <ul class="nav-links">
     @if (Session::get('element_rules.dashboard','0')==1) 
         <li class="menu-head">
-            <a href="">
+            <a href="{{ route('dashboard') }}">
                 <i class='bx bx-home'></i>
                 <span class="link_name">Dashboard</span>
             </a>
@@ -62,7 +62,7 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Superuser</a></li>
                 @if (Session::get('element_rules.role_permission','0')==1) 
-                <li><a href=""><i class='bx bx-key'></i>Role Permission</a></li>
+                <li><a href="{{ route('role-permission.index') }}"><i class='bx bx-key'></i>Role Permission</a></li>
                 @endif
                 @if (Session::get('element_rules.config','0')==1) 
                 <li><a href="#"><i class='bx bx-terminal'></i>Config</a></li>
@@ -245,15 +245,15 @@
             <div class="profile-details">
                 <a href="{{ Session::has('username') ? route('profil', Session::get('username')) : route('login') }}">
                     @if (Session::has('username'))
-                    @if (Session::get('user_photo')==null)
-                        <div class="profile-content">
-                            <img src="{{ asset('/images/guest-photo.png') }}" alt="profileImg">
-                        </div>
-                    @else
-                        <div class="profile-content">
-                            <img src="{{ asset('/images/'.Session::get('user_photo','guest-photo.png')) }}" alt="profileImg">
-                        </div>
-                    @endif   
+                        @if (Session::get('user_photo')==null)
+                            <div class="profile-content">
+                                <img src="{{ asset('/images/guest-photo.png') }}" alt="profileImg">
+                            </div>
+                        @else
+                            <div class="profile-content">
+                                <img src="{{ asset('/images/'.Session::get('user_photo','guest-photo.png')) }}" alt="profileImg">
+                            </div>
+                        @endif   
                         <div class="name-job">
                             <div class="profile_name">{{ Session::get('username') }}</div>
                             <div class="job">{{ Session::get('role_name') }}</div>
