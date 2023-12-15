@@ -31,6 +31,7 @@
                                 <img src="{{ asset('/images/guest-photo.png') }}" id="profil_pict" alt="Guest Photo" style="width: 100%; height: auto;">
                                 @endif
                             </div>
+                            @if ($session_username == $user->username)
                             <div class="bg-tertiary shadow-sm d-flex justify-content-center align-content-center align-middle" style="position: absolute; bottom: 0; right:0; width: 10%; height: 10%; border-radius: 50%; cursor: pointer;" onclick="clickPhotoUpload()">
                                 <i class='bx bx-image-add fs-3' style="line-height: 150%"></i>
                             </div>
@@ -40,6 +41,7 @@
                                 <input type="hidden" name="photo" id="photoname">
                             </form>
                             <input type="file" style="display: none" class="form-control" name="_userAvatarFile" id="_userAvatarFile">
+                            @endif
                         </div>
                         
                         
