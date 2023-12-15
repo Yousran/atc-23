@@ -20,5 +20,9 @@ class User extends Model
     {
         return $this->hasOne(Data::class);
     }
+    public function setting()
+    {
+        return $this->hasOne(Setting::class);
+    }
 
 }

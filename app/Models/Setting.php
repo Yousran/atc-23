@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Setting extends Model
 {
     use HasFactory;
+    protected $fillable = [ 
+        'dark_mode', 
+    ];
     public function user(){
         return $this->belongsTo(User::class);
     }

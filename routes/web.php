@@ -115,6 +115,8 @@ Route::middleware('UserCheck')->group(function(){
     Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
         Route::get('/', [SettingController::class, 'index'])->name('index');
         Route::get('json', [SettingController::class, 'json'])->name('json');
+        Route::get('change', [SettingController::class, 'changeSetting'])->name('change');
+        Route::post('update', [SettingController::class, 'updateSetting'])->name('update');
     });
 
 });

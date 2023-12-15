@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
 
 class SettingController extends Controller
@@ -33,4 +34,23 @@ class SettingController extends Controller
             })
             ->make(true);
     }
+
+    public function changeSetting(){
+        return view('change-setting');
+    }
+
+    public function updateSetting(Request $request){
+        $setting = Setting::find($request->setting_id);
+    
+        if ($setting) {
+            $setting->update([
+                'dark_mode' => $request->dark_mode,
+            ]);
+            LoginController::reloadUser($request->session()->get('username'));
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['error' => 'Setting not found'], 404);
+        }
+    }
+    
 }

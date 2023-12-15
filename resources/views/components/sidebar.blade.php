@@ -232,12 +232,12 @@
     @endif
 
         <li class="menu-head">
-            <a href="#">
+            <a href="{{ route('settings.change') }}">
                 <i class='bx bx-cog'></i>
                 <span class="link_name">Setting</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Setting</a></li>
+                <li><a class="link_name" href="{{ route('settings.change') }}">Setting</a></li>
             </ul>
         </li>
 

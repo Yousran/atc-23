@@ -7,6 +7,7 @@ use App\Models\Education;
 use App\Models\Gender;
 use App\Models\Job;
 use App\Models\Religion;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -26,7 +27,7 @@ class LoginController extends Controller
         ]);
     
         // cek apakah user ada di database
-        $user = User::with(['role', 'role.table_rules.tableList', 'role.element_rules'])
+        $user = User::with(['role', 'role.table_rules.tableList', 'role.element_rules','setting'])
              ->where('username', $request->username)
              ->orWhere('email', $request->username)
              ->first();
@@ -39,12 +40,38 @@ class LoginController extends Controller
             Session::put('user_photo', $user->photo);
             Session::put('table_rules', $user->role->table_rules->toArray());
             Session::put('element_rules', $user->role->element_rules->toArray());
+            Session::put('setting', $user->setting->toArray());
             // redirect ke halaman yang diinginkan setelah login
             return redirect('/');
         } else {
             // jika login gagal, kembali ke halaman login dengan pesan error
             return redirect()->back()->with('wrong','Username atau Password salah');
         }
+    }
+
+    public static function reloadUser($username){
+        session()->forget(['user','username', 'role_name', 'table_rules', 'element_rules','user_photo','setting']);
+    
+        // cek apakah user ada di database
+        $user = User::with(['role', 'role.table_rules.tableList', 'role.element_rules','setting'])
+             ->where('username', $username)
+             ->first();
+
+        if ($user) {
+            // buat session
+            Session::put('username', $user->username);
+            Session::put('role_name', $user->role->role_name);
+            Session::put('user_photo', $user->photo);
+            Session::put('table_rules', $user->role->table_rules->toArray());
+            Session::put('element_rules', $user->role->element_rules->toArray());
+            Session::put('setting', $user->setting->toArray());
+            // redirect ke halaman yang diinginkan setelah login
+
+        } else {
+            // jika login gagal, kembali ke halaman login dengan pesan error
+
+        }
+
     }
     
 
@@ -78,6 +105,7 @@ class LoginController extends Controller
             $user->update([
                 'photo' => $request->photo,
             ]);
+            LoginController::reloadUser($user->username);
             return redirect()->back();
         }
     }
@@ -94,11 +122,17 @@ class LoginController extends Controller
         $user->add_by = session('role_name');
         $user->updated_by = session('role_name');
         $user->save();
+
+        $setting = new Setting;
+        $setting->user_id = $user->id;
+        $setting->add_by = session('role_name');
+        $setting->add_by = session('role_name');
+        $setting->save();
         return redirect('login')->with('success', 'User created successfully!');
     }
 
     public function logout(){
-        session()->forget(['user','username', 'role_name', 'table_rules', 'element_rules','user_photo']);
+        session()->forget(['user','username', 'role_name', 'table_rules', 'element_rules','user_photo','setting']);
         return redirect('/');;
     }
 

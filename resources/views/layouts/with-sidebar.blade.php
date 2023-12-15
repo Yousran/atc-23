@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme='light'>
+<html lang="en" data-bs-theme="{{ Session::get('setting.dark_mode') == 1 ? 'dark' : 'light' }}">
 
 <head>
     <meta charset="UTF-8">
