@@ -65,10 +65,14 @@
 
 @section('columns')
 <x-col ukuran='12'>
-    <div id="darklight-1" class="theme-switcher d-flex align-items-center justify-content-center">
+    <div class="d-flex justify-content-start align-items-center">
+        <div id="darklight-1" class="theme-switcher d-flex align-items-center justify-content-center">
             <input class="sun" type="checkbox" name="dark_mode" id="sun" value="{{ Session::get('setting.dark_mode') == 1 ? '0' : '1' }}" {{ Session::get('setting.dark_mode') == 1 ? '' : 'checked' }}/>
-        <span class="moon"></span>
+            <span class="moon"></span>
+        </div>
+        <h1 class="text h1 align-middle mx-3" id="modename">{{ Session::get('setting.dark_mode') == 1 ? 'Dark Mode' : 'Light Mode' }}</h1>
     </div>
+    
 </x-col>
 @endsection
 
@@ -77,11 +81,13 @@
 <script>
     // Define the initial theme state
     let isLightTheme = {{ Session::get('setting.dark_mode') == 1 ? 'false' : 'true' }};
+    const modeElement = document.getElementById('modename');
 
     // Function to toggle the theme
     function toggleTheme() {
         isLightTheme = !isLightTheme;
         document.documentElement.setAttribute("data-bs-theme", isLightTheme ? "light" : "dark");
+        modeElement.innerHTML = isLightTheme ? "Light Mode" : "Dark Mode";
     }
 
     // Get the sun checkbox element
