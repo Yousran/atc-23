@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\EducationController;
@@ -65,6 +66,14 @@ Route::middleware('UserCheck')->group(function(){
         Route::post('/sidebar',[RolePermissionController::class,'editSidebarPermission'])->name('sidebar');
         Route::post('/addrole',[RolePermissionController::class,'addNewRole'])->name('addrole');
         Route::post('/deleterole',[RolePermissionController::class,'deleteRole'])->name('deleterole');
+    });
+    Route::group(['prefix' => 'config', 'as' => 'config.'], function () {
+        Route::get('/', [ConfigController::class, 'index'])->name('index');
+        
+        Route::post('/gender/make', [ConfigController::class, 'createGender'])->name('gender.make');
+        Route::post('/gender/edit', [ConfigController::class, 'updateGender'])->name('gender.edit');
+        Route::post('/gender/hapus', [ConfigController::class, 'deleteGender'])->name('gender.destroy');
+
     });
 
     Route::group(['prefix' => 'religions', 'as' => 'religions.'], function () {

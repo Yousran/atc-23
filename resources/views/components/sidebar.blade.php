@@ -65,7 +65,7 @@
                 <li><a href="{{ route('role-permission.index') }}"><i class='bx bx-key'></i>Role Permission</a></li>
                 @endif
                 @if (Session::get('element_rules.config','0')==1) 
-                <li><a href="#"><i class='bx bx-terminal'></i>Config</a></li>
+                <li><a href="{{ route('config.index') }}"><i class='bx bx-terminal'></i>Config</a></li>
                 @endif
                 @if (Session::get('element_rules.logs','0')==1) 
                 <li><a href="#"><i class='bx bx-history'></i>Logs</a></li>
