@@ -4,101 +4,100 @@
 
 @endsection
 
-@section('columns')    
+@section('columns')  
+<x-col ukuran='12'>
+    <h1 class="card-title">Field Configuration</h1>
+</x-col>  
 <x-col ukuran='12'>
   <h4 class="card-title">Gender</h4>
         <div class="table-responsive-sm">
-            <form action="{{ route('config.gender.make') }}" method="post">
-                @csrf
-                <div class="input-group">
-                    <input type="text" class="form-control" name="gender_name" placeholder="Enter new gender">
-                    <input type="submit" class="btn btn-success" value="Add">
-                </div>
-            </form>
-            
             @foreach ($genders as $gender)
             <form action="{{ route('config.gender.edit') }}" method="post">
-              <div class="input-group mt-2">
+                <div class="input-group mt-2">
                     @csrf
                     <input type="hidden" class="form-control" name="id" value="{{ $gender->id }}">
                     <input type="text" class="form-control" name="gender_name" value="{{ $gender->gender_name }}">
                     <input type="submit" class="btn btn-primary" value="Update">
                     <a class="btn btn-danger" onclick="genderDelete('{{ $gender->id }}')">Delete</a>
-                  </form>
-                </div>
+                </form>
+            </div>
             @endforeach
+            <form action="{{ route('config.gender.make') }}" method="post">
+                @csrf
+                <div class="input-group mt-2">
+                    <input type="text" class="form-control" name="gender_name" placeholder="Enter new gender">
+                    <input type="submit" class="btn btn-success" value="Add">
+                </div>
+            </form>
         </div>
 </x-col>
 <x-col ukuran='12'>
   <h4 class="card-title">Job</h4>
         <div class="table-responsive-sm">
-            <form action="{{ route('config.job.make') }}" method="post">
-                @csrf
-                <div class="input-group">
-                    <input type="text" class="form-control" name="job_name" placeholder="Enter new job">
-                    <input type="submit" class="btn btn-success" value="Add">
-                </div>
-            </form>
-            
             @foreach ($jobs as $job)
             <form action="{{ route('config.job.edit') }}" method="post">
-              <div class="input-group mt-2">
+                <div class="input-group mt-2">
                     @csrf
                     <input type="hidden" class="form-control" name="id" value="{{ $job->id }}">
                     <input type="text" class="form-control" name="job_name" value="{{ $job->job_name }}">
                     <input type="submit" class="btn btn-primary" value="Update">
                     <a class="btn btn-danger" onclick="jobDelete('{{ $job->id }}')">Delete</a>
-                  </form>
-                </div>
+                </form>
+            </div>
             @endforeach
+            <form action="{{ route('config.job.make') }}" method="post">
+                @csrf
+                <div class="input-group mt-2">
+                    <input type="text" class="form-control" name="job_name" placeholder="Enter new job">
+                    <input type="submit" class="btn btn-success" value="Add">
+                </div>
+            </form>
         </div>
 </x-col>
 <x-col ukuran='12'>
     <h4 class="card-title">Education</h4>
     <div class="table-responsive-sm">
-        <form action="{{ route('config.education.make') }}" method="post">
-            @csrf
-            <div class="input-group">
-                <input type="text" class="form-control" name="education_name" placeholder="Enter new education">
-                <input type="submit" class="btn btn-success" value="Add">
-            </div>
-        </form>
-        
         @foreach ($educations as $education)
         <form action="{{ route('config.education.edit') }}" method="post">
-          <div class="input-group mt-2">
+            <div class="input-group mt-2">
                 @csrf
                 <input type="hidden" class="form-control" name="id" value="{{ $education->id }}">
                 <input type="text" class="form-control" name="education_name" value="{{ $education->education_name }}">
                 <input type="submit" class="btn btn-primary" value="Update">
                 <a class="btn btn-danger" onclick="educationDelete('{{ $education->id }}')">Delete</a>
-              </form>
-            </div>
+            </form>
+        </div>
         @endforeach
+        <form action="{{ route('config.education.make') }}" method="post">
+            @csrf
+            <div class="input-group mt-2">
+                <input type="text" class="form-control" name="education_name" placeholder="Enter new education">
+                <input type="submit" class="btn btn-success" value="Add">
+            </div>
+        </form>
     </div>
 </x-col>
 <x-col ukuran='12'>
     <h4 class="card-title">Religion</h4>
     <div class="table-responsive-sm">
-        <form action="{{ route('config.religion.make') }}" method="post">
-            @csrf
-            <div class="input-group">
-                <input type="text" class="form-control" name="religion_name" placeholder="Enter new religion">
-                <input type="submit" class="btn btn-success" value="Add">
-            </div>
-        </form>
-        
         @foreach ($religions as $religion)
         <form action="{{ route('config.religion.edit') }}" method="post">
-          <div class="input-group mt-2">
+            <div class="input-group mt-2">
                 @csrf
                 <input type="hidden" class="form-control" name="id" value="{{ $religion->id }}">
                 <input type="text" class="form-control" name="religion_name" value="{{ $religion->religion_name }}">
                 <input type="submit" class="btn btn-primary" value="Update">
                 <a class="btn btn-danger" onclick="religionDelete('{{ $religion->id }}')">Delete</a>
-              </form>
-            </div>
+            </form>
+        </div>
         @endforeach
+        <form action="{{ route('config.religion.make') }}" method="post">
+            @csrf
+            <div class="input-group mt-2">
+                <input type="text" class="form-control" name="religion_name" placeholder="Enter new religion">
+                <input type="submit" class="btn btn-success" value="Add">
+            </div>
+        </form>
     </div>
 </x-col>
 @endsection
