@@ -37,7 +37,10 @@ route::group([],function(){
 Route::middleware('UserCheck')->group(function(){ 
 
     Route::get('/', function() {
-        return dd(session()->all());
+        $data = [
+            'sessionData' => session()->all(), // Get all session data
+        ];
+        return view('dashboard',$data);
     })->name('dashboard');
 
     Route::group([], function () {
