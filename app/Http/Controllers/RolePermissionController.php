@@ -87,7 +87,7 @@ class RolePermissionController extends Controller
                 ]);
             }
         }
-    
+        LoginController::reloadUser($request->session()->get('username','guest'));
         return redirect()->back();
     }
     public function editSidebarPermission(Request $request)
@@ -125,6 +125,7 @@ class RolePermissionController extends Controller
             'chart' => $request->has('chart') ? $request->chart : 0,
             'tutorial' => $request->has('tutorial') ? $request->tutorial : 0,
         ]);
+        LoginController::reloadUser($request->session()->get('username','guest'));
         return redirect()->back();
              
     }

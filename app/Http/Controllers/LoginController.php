@@ -7,6 +7,7 @@ use App\Models\Education;
 use App\Models\Gender;
 use App\Models\Job;
 use App\Models\Religion;
+use App\Models\Role;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -67,11 +68,7 @@ class LoginController extends Controller
             Session::put('setting', $user->setting->toArray());
             // redirect ke halaman yang diinginkan setelah login
 
-        } else {
-            // jika login gagal, kembali ke halaman login dengan pesan error
-
-        }
-
+        } 
     }
     
 
