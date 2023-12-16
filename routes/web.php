@@ -73,7 +73,18 @@ Route::middleware('UserCheck')->group(function(){
         Route::post('/gender/make', [ConfigController::class, 'createGender'])->name('gender.make');
         Route::post('/gender/edit', [ConfigController::class, 'updateGender'])->name('gender.edit');
         Route::post('/gender/hapus', [ConfigController::class, 'deleteGender'])->name('gender.destroy');
-
+        
+        Route::post('/job/make', [ConfigController::class, 'createJob'])->name('job.make');
+        Route::post('/job/edit', [ConfigController::class, 'updateJob'])->name('job.edit');              
+        Route::post('/job/hapus', [ConfigController::class, 'deleteJob'])->name('job.destroy');
+        
+        Route::post('/education/make', [ConfigController::class, 'createEducation'])->name('education.make');
+        Route::post('/education/edit', [ConfigController::class, 'updateEducation'])->name('education.edit');              
+        Route::post('/education/hapus', [ConfigController::class, 'deleteEducation'])->name('education.destroy');
+        
+        Route::post('/religion/make', [ConfigController::class, 'createReligion'])->name('religion.make');
+        Route::post('/religion/edit', [ConfigController::class, 'updateReligion'])->name('religion.edit');              
+        Route::post('/religion/hapus', [ConfigController::class, 'deleteReligion'])->name('religion.destroy');
     });
 
     Route::group(['prefix' => 'religions', 'as' => 'religions.'], function () {
