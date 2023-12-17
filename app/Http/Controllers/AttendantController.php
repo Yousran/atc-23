@@ -91,7 +91,7 @@ class AttendantController extends Controller
             $group = Group::with('course')
             ->join('courses', 'courses.id', '=', 'groups.course_id') // Join the courses table
             ->where('groups.course_id', $request->course_id)
-            ->whereRaw('groups.num_attendant <= courses.max_attendants') // Correct the table name
+            ->whereRaw('groups.num_attendant < courses.max_attendants') // Correct the table name
             ->first();
         
 
@@ -125,7 +125,7 @@ class AttendantController extends Controller
             $group = Group::with('course')
             ->join('courses', 'courses.id', '=', 'groups.course_id') // Join the courses table
             ->where('groups.course_id', $request->course_id)
-            ->whereRaw('groups.num_attendant <= courses.max_attendants') // Correct the table name
+            ->whereRaw('groups.num_attendant < courses.max_attendants') // Correct the table name
             ->first();
         
 
