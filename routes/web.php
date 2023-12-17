@@ -61,8 +61,10 @@ Route::middleware('UserCheck')->group(function(){
     });
 
     Route::group(['prefix' => 'program', 'as' => 'program.'], function () {
-        Route::get('/', [CourseController::class, 'view'])->name('index');
+        Route::get('/{id?}', [CourseController::class, 'view'])->name('index');
         Route::post('/add', [CourseController::class, 'addprogram'])->name('add');
+        Route::post('/edit', [CourseController::class, 'addprogram'])->name('edit');
+        Route::post('/programpictupload', [CourseController::class, 'programPictUpload'])->name('programpictupload');
     });
 
     Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.'], function () {

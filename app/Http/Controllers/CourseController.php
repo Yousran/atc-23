@@ -32,9 +32,14 @@ class CourseController extends Controller
         return DataTables::of(Course::all())->make();
     }
 
-    public function view(){
-        $programs = Course::all();
-        return view('program',['programs'=>$programs]);
+    public function view($id = null){
+        if ($id) {
+            $program = Course::find($id);
+            return view('program-detail',['program'=>$program]);
+        }else {
+            $programs = Course::all();
+            return view('program',['programs'=>$programs]);
+        }
     }
 
     public function addprogram(Request $request){
@@ -49,5 +54,15 @@ class CourseController extends Controller
         $program->updated_by = $request->session()->get('username');
         $program->save();
         return redirect()->back();
+    }
+
+    public function programPictUpload(Request $request){
+        if ($request->photo) {
+            $course = Course::find($request->id);
+            $course->update([
+                'photo' => $request->photo,
+            ]);
+            return redirect()->back();
+        }
     }
 }
