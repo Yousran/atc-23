@@ -11,6 +11,11 @@ class Tutor extends Model
     {
         return $this->belongsTo(Data::class);
     }
+    
+    public function user()
+    {
+        return $this->data->user();
+    }
 
     public function course()
     {

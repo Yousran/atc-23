@@ -7,6 +7,7 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ElementRuleController;
 use App\Http\Controllers\GenderController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PaymentStatController;
@@ -35,6 +36,10 @@ use Illuminate\Support\Facades\Route;
 route::group([],function(){
     Route::post('/uploadimage',[UploadController::class,'imageUpload'])->name('uploadimage');
 });
+
+Route::get('/dd',function() {
+    return dd(session()->all());
+})->name('dd');
 
 
 Route::middleware('UserCheck')->group(function(){ 
@@ -77,6 +82,15 @@ Route::middleware('UserCheck')->group(function(){
         Route::get('/signup', [TutorController::class, 'registerTutor'])->name('signup');
         Route::post('/adddata', [TutorController::class, 'dataUpdate'])->name('adddata');
     });
+    
+    Route::group(['prefix' => 'jadwal', 'as' => 'jadwal.'], function () {
+        Route::get('/instruktur', [JadwalController::class, 'jadwalInstruktur'])->name('instruktur');
+        Route::get('/attendant', [JadwalController::class, 'jadwalAttendant'])->name('attendant');
+        Route::get('/instruktur/add', [JadwalController::class, 'addJadwalInstruktur'])->name('instruktur.add');
+        Route::post('/timetable', [JadwalController::class, 'store'])->name('timetable.store');
+
+    });
+
 
 
 

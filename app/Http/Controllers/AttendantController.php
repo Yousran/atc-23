@@ -6,6 +6,7 @@ use App\Models\Attendant;
 use App\Models\Course;
 use App\Models\Education;
 use App\Models\Gender;
+use App\Models\Group;
 use App\Models\Job;
 use App\Models\Religion;
 use App\Models\User;
@@ -86,15 +87,28 @@ class AttendantController extends Controller
                 'add_by' => $request->session()->get('username'),
                 'updated_by' => $request->session()->get('username'),
             ]);
+
+            $group = Group::with('course')
+            ->join('courses', 'courses.id', '=', 'groups.course_id') // Join the courses table
+            ->where('groups.course_id', $request->course_id)
+            ->whereRaw('groups.num_attendant <= courses.max_attendants') // Correct the table name
+            ->first();
+        
+
         
             $attendant = new Attendant();
             $attendant->data_id = $userData->id; // Use $userData instead of $user->data
             $attendant->course_id = $request->course_id;
             //akan diganti
-            $attendant->group_id = 1;
+
+
+            $attendant->group_id = $group->id;
             $attendant->add_by = $request->session()->get('username');
             $attendant->updated_by = $request->session()->get('username');
             $attendant->save();
+
+            $group->num_attendant = $group->num_attendant + 1;
+            $group->save();
         }else {
             $user->data->update([
                 'nik' => $request->nik,
@@ -108,14 +122,27 @@ class AttendantController extends Controller
                 'updated_by' => $request->session()->get('username'),
 
             ]);
-            $attendant = new Attendant;
-            $attendant->data_id = $user->data->id;
+            $group = Group::with('course')
+            ->join('courses', 'courses.id', '=', 'groups.course_id') // Join the courses table
+            ->where('groups.course_id', $request->course_id)
+            ->whereRaw('groups.num_attendant <= courses.max_attendants') // Correct the table name
+            ->first();
+        
+
+        
+            $attendant = new Attendant();
+            $attendant->data_id = $user->data->id; // Use $userData instead of $user->data
             $attendant->course_id = $request->course_id;
             //akan diganti
-            $attendant->group_id = 1;
+
+
+            $attendant->group_id = $group->id;
             $attendant->add_by = $request->session()->get('username');
             $attendant->updated_by = $request->session()->get('username');
             $attendant->save();
+
+            $group->num_attendant = $group->num_attendant + 1;
+            $group->save();
         }
         return redirect()->route('dashboard');
     }

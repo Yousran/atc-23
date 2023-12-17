@@ -88,7 +88,7 @@
                 <li><a href="#"><i class='bx bxs-school'></i>Daftar Kelas</a></li>
                 @endif
                 @if (Session::get('element_rules.jadwal_instruktur','0')==1) 
-                <li><a href="#"><i class='bx bx-calendar-event'></i>Jadwal</a></li>
+                <li><a href="{{ route('jadwal.instruktur') }}"><i class='bx bx-calendar-event'></i>Jadwal</a></li>
                 @endif
             </ul>
         </li>
@@ -108,7 +108,7 @@
                 <li><a href="#"><i class='bx bxs-school'></i>Kelas</a></li>
                 @endif
                 @if (Session::get('element_rules.jadwal_peserta','0')==1) 
-                <li><a href="#"><i class='bx bx-calendar-event'></i>Jadwal</a></li>
+                <li><a href="{{ route('jadwal.attendant') }}"><i class='bx bx-calendar-event'></i>Jadwal</a></li>
                 @endif
                 @if (Session::get('element_rules.sertifikat_peserta','0')==1) 
                 <li><a href="#"><i class='bx bx-medal'></i>Sertifikat</a></li>

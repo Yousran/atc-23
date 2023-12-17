@@ -35,6 +35,8 @@ class DatabaseSeeder extends Seeder
             DataSeeder::class,
             CourseSeeder::class,
             GroupSeeder::class,
+            DaySeeder::class,
+            TimeSeeder::class,
         ]);
     }
 }
