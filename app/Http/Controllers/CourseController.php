@@ -31,4 +31,23 @@ class CourseController extends Controller
     public function json(){
         return DataTables::of(Course::all())->make();
     }
+
+    public function view(){
+        $programs = Course::all();
+        return view('program',['programs'=>$programs]);
+    }
+
+    public function addprogram(Request $request){
+        $program = new Course;
+        $program->course_name = $request->course_name;
+        $program->course_price = $request->course_price;
+        $program->total_meet = $request->total_meet;
+        $program->max_attendants = $request->max_attendants;
+        $program->desc = $request->desc;
+        $program->photo = $request->photoname;
+        $program->add_by = $request->session()->get('username');
+        $program->updated_by = $request->session()->get('username');
+        $program->save();
+        return redirect()->back();
+    }
 }

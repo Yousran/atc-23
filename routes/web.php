@@ -60,6 +60,11 @@ Route::middleware('UserCheck')->group(function(){
         Route::get('/logout',[LoginController::class,'logout'])->name('logout');
     });
 
+    Route::group(['prefix' => 'program', 'as' => 'program.'], function () {
+        Route::get('/', [CourseController::class, 'view'])->name('index');
+        Route::post('/add', [CourseController::class, 'addprogram'])->name('add');
+    });
+
     Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.'], function () {
         Route::get('/', [RolePermissionController::class, 'index'])->name('index');
         Route::post('/update',[RolePermissionController::class,'editRolePermission'])->name('update');

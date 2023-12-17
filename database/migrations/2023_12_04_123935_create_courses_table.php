@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('course_name');
             $table->integer('course_price');
-            $table->integer('total_meet');
-            $table->integer('max_attendants');
-            $table->text('desc');
-            $table->text('photo');
+            $table->integer('total_meet')->nullable('true');
+            $table->integer('max_attendants')->nullable('true');
+            $table->text('desc')->nullable('true');
+            $table->text('photo')->nullable('true');
             $table->string('add_by');
             $table->string('updated_by');
             $table->timestamps();

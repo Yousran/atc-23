@@ -21,12 +21,12 @@
     @endif
     @if (Session::get('element_rules.program_kursus','0')==1) 
         <li class="menu-head">
-            <a href="#">
+            <a href="{{ route('program.index') }}">
                 <i class='bx bx-collection'></i>
                 <span class="link_name">Program Kursus</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Program Kursus</a></li>
+                <li><a class="link_name" href="{{ route('program.index') }}">Program Kursus</a></li>
             </ul>
         </li>
     @endif
