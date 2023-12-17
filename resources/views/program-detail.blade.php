@@ -101,6 +101,9 @@
         <div class="text">
             {{ $program->desc }}
         </div>
+        <a class="btn btn-primary" href="{{ route('attendant.signup',$program->id) }}">
+            Daftar
+        </a>
     </x-col>
 @endsection
 @push('script')
