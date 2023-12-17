@@ -42,7 +42,7 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Daftar</a></li>
                 @if (Session::get('element_rules.daftar_peserta','0')==1) 
-                <li><a href="#"><i class='bx bx-group'></i>Peserta</a></li>
+                <li><a href="{{ route('attendant.signup') }}"><i class='bx bx-group'></i>Peserta</a></li>
                 @endif
                 @if (Session::get('element_rules.daftar_instruktur','0')==1) 
                 <li><a href="{{ route('tutor.signup') }}"><i class='bx bx-chalkboard'></i>Instruktur</a></li>

@@ -29,6 +29,8 @@ class TutorController extends Controller
                 }
                 return view('signup-tutor',['user'=>$user, 'courses' => $courses, 'genders' => $genders, 'jobs' => $jobs, 'religions' => $religions, 'educations' => $educations]);
             }
+        }else {
+            return redirect('/login');
         }
     }
 
@@ -94,7 +96,7 @@ class TutorController extends Controller
             $tutor->updated_by = $request->session()->get('username');
             $tutor->save();
         }
-        return redirect('dashboard');
+        return redirect()->route('dashboard');
     }
     
 }

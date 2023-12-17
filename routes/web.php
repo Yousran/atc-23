@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendantController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DataController;
@@ -68,6 +69,10 @@ Route::middleware('UserCheck')->group(function(){
         Route::post('/programpictupload', [CourseController::class, 'programPictUpload'])->name('programpictupload');
     });
 
+    Route::group(['prefix' => 'attendant', 'as' => 'attendant.'], function () {
+        Route::get('/signup/{course_id?}', [AttendantController::class, 'registerAttendant'])->name('signup');
+        Route::post('/adddata', [AttendantController::class, 'dataUpdate'])->name('adddata');
+    });
     Route::group(['prefix' => 'tutor', 'as' => 'tutor.'], function () {
         Route::get('/signup', [TutorController::class, 'registerTutor'])->name('signup');
         Route::post('/adddata', [TutorController::class, 'dataUpdate'])->name('adddata');

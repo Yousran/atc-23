@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
             ReligionSeeder::class,
             PaymentStatSeeder::class,
             DataSeeder::class,
+            CourseSeeder::class,
+            GroupSeeder::class,
         ]);
     }
 }
