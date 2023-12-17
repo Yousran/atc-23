@@ -14,7 +14,7 @@
 
 </head>
 
-<body style="height: 100vh; overflow: hidden;">
+<body style="height: 100vh; overflow-x:hidden">
     @yield('contents')
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
     @stack('script')

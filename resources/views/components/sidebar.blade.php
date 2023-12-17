@@ -45,7 +45,7 @@
                 <li><a href="#"><i class='bx bx-group'></i>Peserta</a></li>
                 @endif
                 @if (Session::get('element_rules.daftar_instruktur','0')==1) 
-                <li><a href="#"><i class='bx bx-chalkboard'></i>Instruktur</a></li>
+                <li><a href="{{ route('tutor.signup') }}"><i class='bx bx-chalkboard'></i>Instruktur</a></li>
                 @endif
             </ul>
         </li>

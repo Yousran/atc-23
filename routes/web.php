@@ -15,6 +15,7 @@ use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TableListController;
 use App\Http\Controllers\TableRuleController;
+use App\Http\Controllers\TutorController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,13 @@ Route::middleware('UserCheck')->group(function(){
         Route::post('/edit', [CourseController::class, 'addprogram'])->name('edit');
         Route::post('/programpictupload', [CourseController::class, 'programPictUpload'])->name('programpictupload');
     });
+
+    Route::group(['prefix' => 'tutor', 'as' => 'tutor.'], function () {
+        Route::get('/signup', [TutorController::class, 'registerTutor'])->name('signup');
+        Route::post('/adddata', [TutorController::class, 'dataUpdate'])->name('adddata');
+    });
+
+
 
     Route::group(['prefix' => 'role-permission', 'as' => 'role-permission.'], function () {
         Route::get('/', [RolePermissionController::class, 'index'])->name('index');

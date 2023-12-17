@@ -123,7 +123,7 @@ class LoginController extends Controller
         $setting = new Setting;
         $setting->user_id = $user->id;
         $setting->add_by = session('role_name');
-        $setting->add_by = session('role_name');
+        $setting->updated_by = session('role_name');
         $setting->save();
         return redirect('login')->with('success', 'User created successfully!');
     }

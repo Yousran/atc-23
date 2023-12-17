@@ -9,12 +9,12 @@ class Tutor extends Model
 {
     public function data()
     {
-        return $this->belongsTo('App\Models\Data');
+        return $this->belongsTo(Data::class);
     }
 
     public function course()
     {
-        return $this->belongsTo('App\Models\Course');
+        return $this->belongsTo(Course::class);
     }
     use HasFactory;
 }
