@@ -24,6 +24,8 @@ class JadwalController extends Controller
             if ($jadwals) {
                 return view('jadwal-instruktur',['days'=>$days, 'times'=>$times, 'tutors'=>$tutors, 'groups'=>$groups,'jadwals'=>$jadwals]);
             }
+        }else {
+            return redirect()->route('dashboard');
         }
     }
     
@@ -42,6 +44,8 @@ class JadwalController extends Controller
             if ($jadwals) {
                 return view('jadwal-instruktur',['days'=>$days, 'times'=>$times, 'tutors'=>$tutors, 'groups'=>$groups,'jadwals'=>$jadwals]);
             }
+        }else {
+            return redirect()->route('dashboard');
         }
     }
     
