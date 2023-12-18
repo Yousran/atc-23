@@ -88,13 +88,33 @@ class AttendantController extends Controller
                 'updated_by' => $request->session()->get('username'),
             ]);
 
-            $group = Group::with('course')
-            ->join('courses', 'courses.id', '=', 'groups.course_id') // Join the courses table
-            ->where('groups.course_id', $request->course_id)
-            ->whereRaw('groups.num_attendant < courses.max_attendants') // Correct the table name
-            ->first();
+            $group = Group::select('groups.*', 'courses.course_name', 'courses.max_attendants')
+      ->join('courses', 'courses.id', '=', 'groups.course_id')
+      ->where('groups.course_id', $request->course_id)
+      ->whereRaw('groups.num_attendant < courses.max_attendants')
+      ->first();
         
+            if (!$group) {
+                // Dapatkan nama kursus
+                $course = Course::find($request->course_id);
+                $course_name = $course->course_name;
 
+                // Hitung jumlah grup yang sudah ada untuk kursus ini
+                $group_count = Group::where('course_id', $request->course_id)->count();
+
+                // Buat nama grup baru
+                $group_name = 'kelas ' . $course_name . ' ' . ($group_count + 1);
+
+                // Buat grup baru
+                $group = new Group();
+                $group->course_id = $request->course_id;
+                $group->group_name = $group_name;
+                $group->num_attendant = 0;
+                $group->status = 1;
+                $group->add_by = $request->session()->get('username');
+                $group->updated_by = $request->session()->get('username');
+                $group->save();
+            }
         
             $attendant = new Attendant();
             $attendant->data_id = $userData->id; // Use $userData instead of $user->data
@@ -122,13 +142,34 @@ class AttendantController extends Controller
                 'updated_by' => $request->session()->get('username'),
 
             ]);
-            $group = Group::with('course')
-            ->join('courses', 'courses.id', '=', 'groups.course_id') // Join the courses table
-            ->where('groups.course_id', $request->course_id)
-            ->whereRaw('groups.num_attendant < courses.max_attendants') // Correct the table name
-            ->first();
-        
+            $group = Group::select('groups.*', 'courses.course_name', 'courses.max_attendants')
+      ->join('courses', 'courses.id', '=', 'groups.course_id')
+      ->where('groups.course_id', $request->course_id)
+      ->whereRaw('groups.num_attendant < courses.max_attendants')
+      ->first();
 
+        
+            if (!$group) {
+                // Dapatkan nama kursus
+                $course = Course::find($request->course_id);
+                $course_name = $course->course_name;
+
+                // Hitung jumlah grup yang sudah ada untuk kursus ini
+                $group_count = Group::where('course_id', $request->course_id)->count();
+
+                // Buat nama grup baru
+                $group_name = 'kelas ' . $course_name . ' ' . ($group_count + 1);
+
+                // Buat grup baru
+                $group = new Group();
+                $group->course_id = $request->course_id;
+                $group->group_name = $group_name;
+                $group->num_attendant = 0;
+                $group->status = 1;
+                $group->add_by = $request->session()->get('username');
+                $group->updated_by = $request->session()->get('username');
+                $group->save();
+            }
         
             $attendant = new Attendant();
             $attendant->data_id = $user->data->id; // Use $userData instead of $user->data
