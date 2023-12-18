@@ -45,4 +45,7 @@ class Data extends Model
     {
         return $this->belongsTo(Religion::class);
     }
+    public function tutor(){
+        return $this->hasMany(Tutor::class);
+    }
 }

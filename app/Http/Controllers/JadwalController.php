@@ -18,16 +18,21 @@ class JadwalController extends Controller
         $times = Time::all();
         $groups = Group::all();
         $tutors = Tutor::with('data.user')->get();
-        $user = User::where('username', session()->get('username'))->first();
+        $user = User::with('data.tutor')->where('username', session()->get('username'))->first();
         if ($user) {
-            $jadwals = Timetable::with(['group', 'day', 'time'])->where('tutor_id', $user->id)->get();
+            $jadwals = Timetable::with(['group', 'day', 'time'])->whereHas('tutor', function ($query) use ($user) {
+                $query->whereHas('data', function ($query) use ($user) {
+                    $query->where('user_id', $user->id);
+                });
+            })->get();
             if ($jadwals) {
-                return view('jadwal-instruktur',['days'=>$days, 'times'=>$times, 'tutors'=>$tutors, 'groups'=>$groups,'jadwals'=>$jadwals]);
+                return view('jadwal-instruktur', ['days' => $days, 'times' => $times, 'tutors' => $tutors, 'groups' => $groups, 'jadwals' => $jadwals]);
             }
-        }else {
+        } else {
             return redirect()->route('dashboard');
         }
     }
+    
     
     public function jadwalAttendant(){
         $days = Day::all();

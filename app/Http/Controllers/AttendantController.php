@@ -89,10 +89,10 @@ class AttendantController extends Controller
             ]);
 
             $group = Group::select('groups.*', 'courses.course_name', 'courses.max_attendants')
-      ->join('courses', 'courses.id', '=', 'groups.course_id')
-      ->where('groups.course_id', $request->course_id)
-      ->whereRaw('groups.num_attendant < courses.max_attendants')
-      ->first();
+            ->join('courses', 'courses.id', '=', 'groups.course_id')
+            ->where('groups.course_id', $request->course_id)
+            ->whereRaw('groups.num_attendant < courses.max_attendants')
+            ->first();
         
             if (!$group) {
                 // Dapatkan nama kursus
@@ -143,10 +143,10 @@ class AttendantController extends Controller
 
             ]);
             $group = Group::select('groups.*', 'courses.course_name', 'courses.max_attendants')
-      ->join('courses', 'courses.id', '=', 'groups.course_id')
-      ->where('groups.course_id', $request->course_id)
-      ->whereRaw('groups.num_attendant < courses.max_attendants')
-      ->first();
+            ->join('courses', 'courses.id', '=', 'groups.course_id')
+            ->where('groups.course_id', $request->course_id)
+            ->whereRaw('groups.num_attendant < courses.max_attendants')
+            ->first();
 
         
             if (!$group) {
