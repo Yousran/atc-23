@@ -20,6 +20,8 @@ class CourseSeeder extends Seeder
             [
                 'course_name'=>'mengemudi',
                 'course_price'=>'100000',
+                'total_meet'=>'10',
+                'max_attendants'=>'2',
                 'add_by'=>'superuser',
                 'updated_by'=>'superuser'
             ]
@@ -28,6 +30,8 @@ class CourseSeeder extends Seeder
             [
                 'course_name'=>'komputer',
                 'course_price'=>'100000',
+                'total_meet'=>'10',
+                'max_attendants'=>'5',
                 'add_by'=>'superuser',
                 'updated_by'=>'superuser'
             ]
