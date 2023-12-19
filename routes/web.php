@@ -7,6 +7,7 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ElementRuleController;
 use App\Http\Controllers\GenderController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LoginController;
@@ -90,6 +91,10 @@ Route::middleware('UserCheck')->group(function(){
         Route::post('/timetable', [JadwalController::class, 'store'])->name('timetable.store');
 
     });
+    Route::group(['prefix' => 'group', 'as' => 'group.'], function () {
+        Route::get('/instruktur', [GroupController::class, 'groupInstruktur'])->name('instruktur');
+        Route::get('/attendant', [GroupController::class, 'groupAttendant'])->name('attendant');
+    });
 
 
 
@@ -120,7 +125,6 @@ Route::middleware('UserCheck')->group(function(){
         Route::post('/religion/edit', [ConfigController::class, 'updateReligion'])->name('religion.edit');              
         Route::post('/religion/hapus', [ConfigController::class, 'deleteReligion'])->name('religion.destroy');
     });
-
     Route::group(['prefix' => 'religions', 'as' => 'religions.'], function () {
         Route::get('/', [ReligionController::class, 'index'])->name('index');
         Route::get('json', [ReligionController::class, 'json'])->name('json');
