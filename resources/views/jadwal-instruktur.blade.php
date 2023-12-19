@@ -30,8 +30,7 @@
                                 @endphp
                                 @if($jadwal)
                                     <td>
-                                        <div class="margin-10px-top font-size14">{{ $jadwal->time->num_time }}</div>
-                                        <div class="font-size13 text-light-gray">{{ $jadwal->group->group_name }}</div>
+                                        <span class="badge text-bg-primary">{{ $jadwal->group->group_name }}</span>
                                     </td>
                                 @else
                                     <td></td>

@@ -29,14 +29,15 @@
                                     $jadwalsForDayAndTime = $jadwals->where('day_id', $day->id)->where('time_id', $time->id);
                                 @endphp
                                 @if($jadwalsForDayAndTime->count() > 0)
-                                    <td>
+                                    <td class="droppable">
                                         @foreach ($jadwalsForDayAndTime as $jadwal)
-                                            <div class="margin-10px-top font-size14">{{ $jadwal->tutor->user->username }}</div>
-                                            <div class="font-size13 text-light-gray">{{ $jadwal->group->group_name }}</div>
+                                            <div class="badge text-bg-info draggable">{{ $jadwal->group->group_name }}
+                                                <span class="badge rounded-pill text-bg-primary">{{ $jadwal->tutor->user->username }}</span>
+                                            </div>
                                         @endforeach
                                     </td>
                                 @else
-                                    <td></td>
+                                    <td class="droppable"></td>
                                 @endif
                             @endforeach
                         </tr>
@@ -47,6 +48,7 @@
             </div>
         </div>
     </x-col>
+
     <x-col ukuran="12">
         <h2>Add New Timetable Entry</h2>
 
@@ -93,3 +95,48 @@
     </form>
     </x-col>
 @endsection
+@push('script')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+<script>
+$( function() {
+  $( ".draggable" ).draggable({
+    snap: ".droppable",
+    snapMode: "inner"
+  });
+  $( ".droppable" ).droppable({
+    drop: function( event, ui ) {
+      $( this )
+        .addClass( "ui-state-highlight" )
+        .find( "p" )
+          .html( "Dropped!" );
+    }
+  });
+} );
+
+
+</script>
+<script>
+$('#save-button').click(function() {
+  var timetableState = getTimetableState(); // You need to implement this function
+  $.post('/save-timetable', timetableState);
+});
+
+</script>
+<script>
+$('.timetable-cell').click(function() {
+  var cellData = $(this).data();
+  if (cellData) {
+    // This cell has data, populate the form fields
+    $('#group_id').val(cellData.group_id);
+    // ... populate other fields ...
+  } else {
+    // This cell does not have data, clear the form fields
+    $('#group_id').val('');
+    // ... clear other fields ...
+  }
+  $('#form-modal').modal('show');
+});
+
+</script>
+@endpush
