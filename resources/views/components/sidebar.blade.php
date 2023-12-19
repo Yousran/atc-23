@@ -131,7 +131,7 @@
                 <li><a href="#"><i class='bx bx-user-check'></i>Konfirm Pendaftar</a></li>
                 @endif
                 @if (Session::get('element_rules.jadwal','0')==1) 
-                <li><a href="#"><i class='bx bx-calendar-event'></i>Jadwal</a></li>
+                <li><a href="{{ route('jadwal.instruktur.add') }}"><i class='bx bx-calendar-event'></i>Jadwal</a></li>
                 @endif
                 @if (Session::get('element_rules.sertifikat_operator','0')==1) 
                 <li><a href="#"><i class='bx bx-medal'></i>Sertifikat</a></li>
