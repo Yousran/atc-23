@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -54,6 +55,7 @@ class ElementRuleSeeder extends Seeder
                 'tutorial'=>'1',
                 'add_by'=>'superuser',
                 'updated_by'=>'superuser',
+                'created_at' => Carbon::now(), 'updated_at' => Carbon::now()
             ],
             [
                 'role_id' => '2',
@@ -87,6 +89,7 @@ class ElementRuleSeeder extends Seeder
                 'tutorial' => '1',
                 'add_by' => 'superuser',
                 'updated_by' => 'superuser',
+                'created_at' => Carbon::now(), 'updated_at' => Carbon::now()
             ],            
             [
                 'role_id' => '3',
@@ -120,6 +123,7 @@ class ElementRuleSeeder extends Seeder
                 'tutorial' => '0',
                 'add_by' => 'superuser',
                 'updated_by' => 'superuser',
+                'created_at' => Carbon::now(), 'updated_at' => Carbon::now()
             ]            
         ]);
     }

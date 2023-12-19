@@ -11,6 +11,7 @@ use App\Models\Education;
 use App\Models\Job;
 use App\Models\Religion;
 use App\Models\Data;
+use Carbon\Carbon;
 
 class DataSeeder extends Seeder
 {
@@ -34,10 +35,10 @@ class DataSeeder extends Seeder
         if ($role && $user && $gender && $education && $job && $religion) {
             Data::create([
                 'user_id' => $user->id,
-                'nik' => 1234567890, // replace with actual NIK
-                'surename' => 'John Doe', // replace with actual surename
-                'address' => '123 Main St', // replace with actual address
-                'birthday' => '2000-01-01', // replace with actual birthday
+                'nik' => 7602010203040001, // replace with actual NIK
+                'surename' => 'a.m.yusran mazidan', // replace with actual surename
+                'address' => 'jl. martadinata komp pertokoan tegar 777 blok r1', // replace with actual address
+                'birthday' => '2004-03-02', // replace with actual birthday
                 'gender_id' => $gender->id,
                 'education_id' => $education->id,
                 'job_id' => $job->id,
@@ -45,6 +46,8 @@ class DataSeeder extends Seeder
                 'photo' => null, // replace with actual photo if any
                 'add_by' => 'superuser',
                 'updated_by' => 'superuser',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now(),
             ]);
         }
     }

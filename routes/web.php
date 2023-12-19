@@ -67,14 +67,12 @@ Route::middleware('UserCheck')->group(function(){
         Route::post('/updatedata',[LoginController::class,'updatedata'])->name('updatedata');
         Route::get('/logout',[LoginController::class,'logout'])->name('logout');
     });
-
     Route::group(['prefix' => 'program', 'as' => 'program.'], function () {
         Route::get('/{id?}', [CourseController::class, 'view'])->name('index');
         Route::post('/add', [CourseController::class, 'addprogram'])->name('add');
         Route::post('/edit', [CourseController::class, 'addprogram'])->name('edit');
         Route::post('/programpictupload', [CourseController::class, 'programPictUpload'])->name('programpictupload');
     });
-
     Route::group(['prefix' => 'attendant', 'as' => 'attendant.'], function () {
         Route::get('/signup/{course_id?}', [AttendantController::class, 'registerAttendant'])->name('signup');
         Route::post('/adddata', [AttendantController::class, 'dataUpdate'])->name('adddata');
@@ -83,7 +81,6 @@ Route::middleware('UserCheck')->group(function(){
         Route::get('/signup', [TutorController::class, 'registerTutor'])->name('signup');
         Route::post('/adddata', [TutorController::class, 'dataUpdate'])->name('adddata');
     });
-    
     Route::group(['prefix' => 'jadwal', 'as' => 'jadwal.'], function () {
         Route::get('/instruktur', [JadwalController::class, 'jadwalInstruktur'])->name('instruktur');
         Route::get('/attendant', [JadwalController::class, 'jadwalAttendant'])->name('attendant');

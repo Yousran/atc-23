@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,9 @@ class CourseSeeder extends Seeder
                 'total_meet'=>'10',
                 'max_attendants'=>'2',
                 'add_by'=>'superuser',
-                'updated_by'=>'superuser'
+                'updated_by'=>'superuser',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now(),
             ]
             );
             DB::table('courses')->insert(
@@ -33,7 +36,10 @@ class CourseSeeder extends Seeder
                 'total_meet'=>'10',
                 'max_attendants'=>'5',
                 'add_by'=>'superuser',
-                'updated_by'=>'superuser'
+                'updated_by'=>'superuser',
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now(),
+
             ]
             );
     }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\TableList;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +30,7 @@ class TableRuleSeeder extends Seeder
                 'soft_delete' => '1', 
                 'hard_delete' => '1', 
                 'add_by' => 'superuser', 
-                'updated_by' => 'superuser'
+                'updated_by' => 'superuser', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()
             ]);
         }
         foreach ($tableLists as $table) {
@@ -43,7 +44,7 @@ class TableRuleSeeder extends Seeder
                 'soft_delete' => '0', 
                 'hard_delete' => '0', 
                 'add_by' => 'superuser', 
-                'updated_by' => 'superuser'
+                'updated_by' => 'superuser', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()
             ]);
         }
         foreach ($tableLists as $table) {
@@ -57,7 +58,7 @@ class TableRuleSeeder extends Seeder
                 'soft_delete' => '0', 
                 'hard_delete' => '0', 
                 'add_by' => 'superuser', 
-                'updated_by' => 'superuser'
+                'updated_by' => 'superuser', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()
             ]);
         }
 

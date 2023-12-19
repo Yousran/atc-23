@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,7 @@ class UserSeeder extends Seeder
             'email'=>'yusranmazidan@gmail.com',
             'password'=>Hash::make('123456789'),
             'add_by'=>'superuser',
-            'updated_by'=>'superuser'
+            'updated_by'=>'superuser', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()
         ]
         );
         DB::table('users')->insert(
@@ -33,7 +34,7 @@ class UserSeeder extends Seeder
             'email'=>'yusran@gmail.com',
             'password'=>Hash::make('123456789'),
             'add_by'=>'superuser',
-            'updated_by'=>'superuser'
+            'updated_by'=>'superuser', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()
         ]
         );
     }
