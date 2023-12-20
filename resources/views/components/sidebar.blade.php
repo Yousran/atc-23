@@ -68,7 +68,7 @@
                 <li><a href="{{ route('config.index') }}"><i class='bx bx-terminal'></i>Config</a></li>
                 @endif
                 @if (Session::get('element_rules.logs','0')==1) 
-                <li><a href="#"><i class='bx bx-history'></i>Logs</a></li>
+                <li><a href="{{ route('config.logs') }}"><i class='bx bx-history'></i>Logs</a></li>
                 @endif
             </ul>
         </li>

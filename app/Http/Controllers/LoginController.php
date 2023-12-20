@@ -43,6 +43,7 @@ class LoginController extends Controller
             Session::put('element_rules', $user->role->element_rules->toArray());
             Session::put('setting', $user->setting->toArray());
             // redirect ke halaman yang diinginkan setelah login
+            LogController::logs('login',$user->username);
             return redirect('/');
         } else {
             // jika login gagal, kembali ke halaman login dengan pesan error
@@ -125,10 +126,12 @@ class LoginController extends Controller
         $setting->add_by = session('role_name');
         $setting->updated_by = session('role_name');
         $setting->save();
+        LogController::logs('signup',$user->username);
         return redirect('login')->with('success', 'User created successfully!');
     }
 
     public function logout(){
+        LogController::logs('logout',session()->get('username'));
         session()->forget(['user','username', 'role_name', 'table_rules', 'element_rules','user_photo','setting']);
         return redirect('/');;
     }

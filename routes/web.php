@@ -10,6 +10,7 @@ use App\Http\Controllers\GenderController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PaymentStatController;
 use App\Http\Controllers\ReligionController;
@@ -121,6 +122,9 @@ Route::middleware('UserCheck')->group(function(){
         Route::post('/religion/make', [ConfigController::class, 'createReligion'])->name('religion.make');
         Route::post('/religion/edit', [ConfigController::class, 'updateReligion'])->name('religion.edit');              
         Route::post('/religion/hapus', [ConfigController::class, 'deleteReligion'])->name('religion.destroy');
+
+        Route::get('/logs',[LogController::class,'index'])->name('logs');
+        Route::get('/logs/json',[LogController::class,'getLogs'])->name('logs.json');
     });
     Route::group(['prefix' => 'religions', 'as' => 'religions.'], function () {
         Route::get('/', [ReligionController::class, 'index'])->name('index');
