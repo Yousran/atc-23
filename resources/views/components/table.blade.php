@@ -29,10 +29,17 @@
                 processing: true,
                 serverSide: true,
                 pagingType: 'full_numbers',
-                dom: 'Blfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf'
-                ],
+                @foreach (Session::get('table_rules') as $rule)
+                @php
+                $nama = $rule['table_list']['table_name'];
+                @endphp
+                @if($rule['export'] == 1 && $nama == $tableName)
+                        dom: 'Blfrtip',
+                        buttons: [
+                            'copy', 'csv', 'excel', 'pdf'
+                        ],
+                    @endif
+                @endforeach
                 lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 columns:[
                     @foreach ($columns as $column)
