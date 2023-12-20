@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
+    protected $fillable = [
+        'num_attendant',
+        'num_meet',
+        'status',
+    ];
     use HasFactory;
     public function attendants()
     {

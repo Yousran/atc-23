@@ -127,7 +127,6 @@ class AttendantController extends Controller
             $attendant->updated_by = $request->session()->get('username');
             $attendant->save();
 
-            $group->num_attendant = $group->num_attendant + 1;
             $group->save();
         }else {
             $user->data->update([
@@ -176,13 +175,11 @@ class AttendantController extends Controller
             $attendant->course_id = $request->course_id;
             //akan diganti
 
-
             $attendant->group_id = $group->id;
             $attendant->add_by = $request->session()->get('username');
             $attendant->updated_by = $request->session()->get('username');
             $attendant->save();
 
-            $group->num_attendant = $group->num_attendant + 1;
             $group->save();
         }
         return redirect()->route('dashboard');

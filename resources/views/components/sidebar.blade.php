@@ -128,7 +128,7 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Operator</a></li>
                 @if (Session::get('element_rules.konfirm_pendaftar','0')==1) 
-                <li><a href="#"><i class='bx bx-user-check'></i>Konfirm Pendaftar</a></li>
+                <li><a href="{{ route('operator.confirm') }}"><i class='bx bx-user-check'></i>Konfirm Pendaftar</a></li>
                 @endif
                 @if (Session::get('element_rules.jadwal','0')==1) 
                 <li><a href="{{ route('jadwal.instruktur.add') }}"><i class='bx bx-calendar-event'></i>Jadwal</a></li>

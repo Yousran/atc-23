@@ -12,6 +12,7 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PaymentStatController;
 use App\Http\Controllers\ReligionController;
 use App\Http\Controllers\RoleController;
@@ -92,6 +93,10 @@ Route::middleware('UserCheck')->group(function(){
     Route::group(['prefix' => 'group', 'as' => 'group.'], function () {
         Route::get('/instruktur', [GroupController::class, 'groupInstruktur'])->name('instruktur');
         Route::get('/attendant', [GroupController::class, 'groupAttendant'])->name('attendant');
+    });
+    Route::group(['prefix' => 'operator', 'as' => 'operator.'], function () {
+        Route::get('/confirm', [OperatorController::class, 'confirmSignup'])->name('confirm');
+        Route::post('/createattendant', [OperatorController::class, 'updateAttendant'])->name('createattendant');
     });
 
 
