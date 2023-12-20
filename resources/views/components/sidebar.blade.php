@@ -85,7 +85,7 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Instruktur</a></li>
                 @if (Session::get('element_rules.daftar_kelas_instruktur','0')==1) 
-                <li><a href="{{ route('jadwal.attendant') }}"><i class='bx bxs-school'></i>Daftar Kelas</a></li>
+                <li><a href="{{ route('group.instruktur') }}"><i class='bx bxs-school'></i>Daftar Kelas</a></li>
                 @endif
                 @if (Session::get('element_rules.jadwal_instruktur','0')==1) 
                 <li><a href="{{ route('jadwal.instruktur') }}"><i class='bx bx-calendar-event'></i>Jadwal</a></li>

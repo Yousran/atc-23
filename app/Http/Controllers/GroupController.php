@@ -48,5 +48,25 @@ class GroupController extends Controller
         // Jika user atau data tidak ditemukan, kembalikan pesan error
         return "User atau Data tidak ditemukan.";
     }
+
+    public function groupInstruktur(){
+        $user = User::with('data')->where('username', session()->get('username'))->first();
+        // Jika user ditemukan
+        if($user) {
+            // Ambil data dari relasi 'data' user
+            $data = $user->data;
+    
+            // Jika data ditemukan
+            if($data) {
+                // Ambil semua grup yang memiliki 'tutor_id' yang sama dengan 'id' user
+                $groups = Group::where('tutor_id', $user->id)->with(['course', 'attendants'])->get();
+    
+                // Tampilkan hasil
+                return view('group',['groups'=>$groups]);
+            }
+        }
+        return dd($user);
+    }
+    
 }
 
