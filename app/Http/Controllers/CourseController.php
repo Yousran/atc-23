@@ -56,6 +56,20 @@ class CourseController extends Controller
         return redirect()->back();
     }
 
+    public function editprogram(Request $request){
+        $program = Course::find($request->id);
+        $program->course_name = $request->course_name;
+        $program->course_price = $request->course_price;
+        $program->total_meet = $request->total_meet;
+        $program->max_attendants = $request->max_attendants;
+        $program->desc = $request->desc;
+        $program->photo = $request->photoname;
+        $program->updated_by = $request->session()->get('username');
+        $program->save();
+        return redirect()->back();
+    }
+    
+
     public function programPictUpload(Request $request){
         if ($request->photo) {
             $course = Course::find($request->id);

@@ -8,7 +8,7 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Daftar Sebagai Tutor</h5>
+                    <h5 class="card-title text-center">Daftar Peserta</h5>
                     <form action="{{ route('attendant.adddata') }}" method="post" id="signup-form">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ $user->id }}">
