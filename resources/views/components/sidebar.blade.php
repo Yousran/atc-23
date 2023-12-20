@@ -190,7 +190,7 @@
                 @foreach (Session::get('table_rules') as $rule)
                     @php
                         $tableName = $rule['table_list']['table_name'];
-                        $routeName = str_replace('_', '-', $tableName).".index";
+                        $routeName = "table." . str_replace('_', '-', $tableName);
                     @endphp
                     @if ($rule['view'] == 1 && ($tableName == 'courses' || $tableName == 'data' || $tableName == 'educations' || $tableName == 'element_rules' || $tableName == 'genders' || $tableName == 'jobs' || $tableName == 'payment_stats' || $tableName == 'religions'||$tableName == 'roles'||$tableName == 'settings'||$tableName == 'table_lists'||$tableName == 'table_rules'||$tableName == 'users'))
                         <li>
@@ -202,6 +202,7 @@
                     @endif
                 @endforeach
             </ul>
+            
         </li>
     @endif
     @if (Session::get('element_rules.chart','0')==1) 
