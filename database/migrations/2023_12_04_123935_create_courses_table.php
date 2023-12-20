@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('total_meet')->nullable('true');
             $table->integer('max_attendants')->nullable('true');
             $table->text('desc')->nullable('true');
+            $table->string('color_code')->nullable('true');
             $table->text('photo')->nullable('true');
             $table->string('add_by');
             $table->string('updated_by');
