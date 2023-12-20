@@ -30,14 +30,14 @@
                 serverSide: true,
                 pagingType: 'full_numbers',
                 @foreach (Session::get('table_rules') as $rule)
-                @php
-                $nama = $rule['table_list']['table_name'];
-                @endphp
-                @if($rule['export'] == 1 && $nama == $tableName)
-                        dom: 'Blfrtip',
-                        buttons: [
-                            'copy', 'csv', 'excel', 'pdf'
-                        ],
+                    @php
+                        $nama = $rule['table_list']['table_name'];
+                    @endphp
+                    @if($rule['export'] == 1 && $nama == str_replace('-', '_', $tableName))
+                            dom: 'Blfrtip',
+                            buttons: [
+                                'copy', 'csv', 'excel', 'pdf'
+                            ],
                     @endif
                 @endforeach
                 lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
