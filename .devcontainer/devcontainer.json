@@ -1,0 +1,23 @@
+{
+    "name": "Python Project",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "runArgs": [
+        "-u",
+        "vscode",
+        "-e",
+        "HOME=/home/vscode"
+    ],
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "python.pythonPath": "/usr/local/bin/python",
+        "python.linting.pylintEnabled": true,
+        "python.linting.enabled": true,
+        "workbench.colorTheme": "Noctis Minimus"
+    },
+    "extensions": [
+        "liviuschera.noctis"
+    ]
+}
