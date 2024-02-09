@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+      -  .:/com.docker.devenvironments.code
     ports:
       - "8080:8181"
     depends_on:

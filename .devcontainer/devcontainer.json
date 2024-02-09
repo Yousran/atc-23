@@ -1,23 +1,24 @@
 {
-    "name": "Python Project",
+    "name": "Laravel Project",
     "build": {
-        "dockerfile": "Dockerfile",
-        "context": ".."
+        "dockerfile": "./Dockerfile",
+        "context": "."
     },
-    "runArgs": [
-        "-u",
-        "vscode",
-        "-e",
-        "HOME=/home/vscode"
-    ],
-    "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash",
-        "python.pythonPath": "/usr/local/bin/python",
-        "python.linting.pylintEnabled": true,
-        "python.linting.enabled": true,
-        "workbench.colorTheme": "Noctis Minimus"
-    },
-    "extensions": [
-        "liviuschera.noctis"
-    ]
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "liviuschera.noctis",
+                "adpyke.codesnap",
+                "mhutchie.git-graph",
+                "zhuangtongfa.material-theme",
+                "liviuschera.noctis",
+                "bmewburn.vscode-intelephense-client",
+                "onecentlin.laravel-blade",
+                "amiralizadeh9480.laravel-extra-intellisense"
+            ],
+            "settings": {
+                "workbench.colorTheme": "Noctis Minimus"
+            }
+        }
+      }
 }
