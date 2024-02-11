@@ -1,23 +1,26 @@
 {
     "name": "Laravel Project",
-    "build": {
-        "dockerfile": "./Dockerfile",
-        "context": "."
-    },
+    // "build": {
+    //     "dockerfile": "./Dockerfile",
+    //     "context": "."
+    // },
+    "dockerComposeFile": "../compose-dev.yaml",
+    "service": "web",
+    "workspaceFolder": "/app",
     "customizations": {
         "vscode": {
             "extensions": [
-                "liviuschera.noctis",
                 "adpyke.codesnap",
                 "mhutchie.git-graph",
                 "zhuangtongfa.material-theme",
                 "liviuschera.noctis",
+                "zhuangtongfa.material-theme",
                 "bmewburn.vscode-intelephense-client",
                 "onecentlin.laravel-blade",
                 "amiralizadeh9480.laravel-extra-intellisense"
             ],
             "settings": {
-                "workbench.colorTheme": "Noctis Minimus"
+                "workbench.colorTheme": "One Dark Pro"
             }
         }
       }
